@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CB21E8E0F140057A88C /* AppDelegate.swift */; };
-		BC338CB51E8E0F140057A88C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CB41E8E0F140057A88C /* ViewController.swift */; };
 		BC338CB81E8E0F140057A88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB61E8E0F140057A88C /* Main.storyboard */; };
 		BC338CBA1E8E0F140057A88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB91E8E0F140057A88C /* Assets.xcassets */; };
 		BC338CBD1E8E0F140057A88C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */; };
@@ -16,6 +15,13 @@
 		BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CCE1E8E10760057A88C /* EntityMapper.swift */; };
 		BC338CD11E8E107F0057A88C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CD01E8E107F0057A88C /* Location.swift */; };
 		BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CD21E8E10D40057A88C /* LocationRepository.swift */; };
+		BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CD41E8E39170057A88C /* MainTabBarViewController.swift */; };
+		BC338CD91E8E3A5D0057A88C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC338CD81E8E3A5D0057A88C /* MapKit.framework */; };
+		BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CDA1E8E3BBE0057A88C /* LocationService.swift */; };
+		BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CDD1E8E475E0057A88C /* MapViewController.swift */; };
+		BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE01E8E47790057A88C /* LocationViewController.swift */; };
+		BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE21E8E5CCA0057A88C /* LocationCell.swift */; };
+		BC338CE51E8E5EC90057A88C /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE41E8E5EC90057A88C /* DateExtensions.swift */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +29,6 @@
 		09CC86C2D1CA29BEE2A37CE9 /* Pods-MGLocationKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		BC338CAF1E8E0F140057A88C /* MGLocationKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGLocationKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC338CB21E8E0F140057A88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC338CB41E8E0F140057A88C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BC338CB71E8E0F140057A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC338CB91E8E0F140057A88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC338CBC1E8E0F140057A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +37,13 @@
 		BC338CCE1E8E10760057A88C /* EntityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMapper.swift; sourceTree = "<group>"; };
 		BC338CD01E8E107F0057A88C /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BC338CD21E8E10D40057A88C /* LocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
+		BC338CD41E8E39170057A88C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		BC338CD81E8E3A5D0057A88C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BC338CDA1E8E3BBE0057A88C /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		BC338CDD1E8E475E0057A88C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BC338CE01E8E47790057A88C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		BC338CE21E8E5CCA0057A88C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		BC338CE41E8E5EC90057A88C /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC338CD91E8E3A5D0057A88C /* MapKit.framework in Frameworks */,
 				F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +64,7 @@
 		7DC25D4961CDCB9137F8F0A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CD81E8E3A5D0057A88C /* MapKit.framework */,
 				BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */,
 			);
 			name = Frameworks;
@@ -84,8 +98,6 @@
 				BC338CC91E8E10140057A88C /* Extensions */,
 				BC338CCA1E8E10140057A88C /* Libraries */,
 				BC338CB21E8E0F140057A88C /* AppDelegate.swift */,
-				BC338CB41E8E0F140057A88C /* ViewController.swift */,
-				BC338CB61E8E0F140057A88C /* Main.storyboard */,
 				BC338CB91E8E0F140057A88C /* Assets.xcassets */,
 				BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */,
 				BC338CBE1E8E0F140057A88C /* Info.plist */,
@@ -106,6 +118,7 @@
 		BC338CC61E8E10140057A88C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CDA1E8E3BBE0057A88C /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -121,6 +134,10 @@
 		BC338CC81E8E10140057A88C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CDC1E8E475E0057A88C /* Map */,
+				BC338CDE1E8E475E0057A88C /* Location */,
+				BC338CB61E8E0F140057A88C /* Main.storyboard */,
+				BC338CD41E8E39170057A88C /* MainTabBarViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -128,6 +145,7 @@
 		BC338CC91E8E10140057A88C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CE41E8E5EC90057A88C /* DateExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,6 +155,23 @@
 			children = (
 			);
 			path = Libraries;
+			sourceTree = "<group>";
+		};
+		BC338CDC1E8E475E0057A88C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				BC338CDD1E8E475E0057A88C /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		BC338CDE1E8E475E0057A88C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				BC338CE01E8E47790057A88C /* LocationViewController.swift */,
+				BC338CE21E8E5CCA0057A88C /* LocationCell.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		BE45C853E44357C39BBC4765 /* Pods */ = {
@@ -185,6 +220,14 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = NN74NJ78BB;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -273,10 +316,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */,
-				BC338CB51E8E0F140057A88C /* ViewController.swift in Sources */,
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
+				BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */,
 				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
+				BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */,
+				BC338CE51E8E5EC90057A88C /* DateExtensions.swift in Sources */,
 				BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */,
+				BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */,
+				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
+				BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */,
 				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +338,7 @@
 				BC338CB71E8E0F140057A88C /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */ = {

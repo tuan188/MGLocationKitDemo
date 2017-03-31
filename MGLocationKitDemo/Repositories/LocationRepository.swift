@@ -40,4 +40,19 @@ class LocationRepository {
             fulfill(locations)
         }
     }
+    
+    func deleteAll() -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            MagicalRecord.save({ (context) in
+                LocationEntity.mr_truncateAll(in: context)
+            }) { (changed, error) in
+                if let error = error {
+                    reject(error)
+                }
+                else {
+                    fulfill(changed)
+                }
+            }
+        }
+    }
 }
