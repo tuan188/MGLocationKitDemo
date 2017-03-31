@@ -9,5 +9,11 @@
 import UIKit
 
 struct Location {
-
+    let id: String
+    let lat: Double
+    let lng: Double
+    let createdTime: Date
+    let arrivalTime: Date?
+    let departureTime: Date?
+    let transport: String?
 }
