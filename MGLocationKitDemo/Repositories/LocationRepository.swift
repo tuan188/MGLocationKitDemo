@@ -32,7 +32,7 @@ class LocationRepository {
         return Promise { fulfill, reject in
             let context = NSManagedObjectContext.mr_()
             var locations = [Location]()
-            if let entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: true, in: context) as? [LocationEntity] {
+            if let entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, in: context) as? [LocationEntity] {
                 for entity in entities {
                     locations.append(EntityMapper.location(from: entity))
                 }

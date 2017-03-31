@@ -9,9 +9,12 @@
 import UIKit
 
 struct Formatter {
-    
 }
 
 extension Date {
-    
+    func fullDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self)
+    }
 }

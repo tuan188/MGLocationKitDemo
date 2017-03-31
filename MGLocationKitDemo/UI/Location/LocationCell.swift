@@ -16,7 +16,9 @@ class LocationCell: UITableViewCell {
     
     var location: Location! {
         didSet {
-            
+            timeLabel.text = location.createdTime.fullDateString()
+            latLabel.text = String(location.lat)
+            lngLabel.text = String(location.lng)
         }
     }
 

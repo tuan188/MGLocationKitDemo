@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="ukh-kS-XHO" customClass="LocationCell" customModule="MGLocationKitDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="98" id="ukh-kS-XHO" customClass="LocationCell" customModule="MGLocationKitDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ukh-kS-XHO" id="YCU-AN-vkl">
@@ -84,6 +84,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8Es-kh-zFI" id="k8h-SY-Qq2"/>
+                                    <outlet property="delegate" destination="8Es-kh-zFI" id="mbp-Ui-6du"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,8 +99,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Locations" id="mYg-7c-QWU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nol-Pf-30k"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="osH-MD-MFf">
+                            <connections>
+                                <action selector="deleteAll:" destination="8Es-kh-zFI" id="9gB-E5-mw3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nol-Pf-30k">
+                            <connections>
+                                <action selector="refresh:" destination="8Es-kh-zFI" id="qgy-dZ-aDa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="y1p-MI-4oO" id="liS-oc-8PE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9h9-pT-qIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

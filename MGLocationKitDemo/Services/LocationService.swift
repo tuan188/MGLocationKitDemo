@@ -9,52 +9,82 @@
 import UIKit
 import CoreLocation
 import XCGLogger
+import PromiseKit
 
-class LocationService: NSObject {
-    
-    var locationManager: CLLocationManager!
+
+class LocationService {
     let locationRepository = LocationRepository()
     
-    func startStandardUpdates() {
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-        }
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        locationManager.distanceFilter = 10
-        locationManager.startUpdatingLocation()
+    func add(_ location: Location) -> Promise<Bool> {
+        return locationRepository.add(location)
     }
     
-    func startMonitoringVisits() {
-        
+    func add(_ location: CLLocation) -> Promise<Bool> {
+        let loc = Location(
+            id: UUID().uuidString,
+            lat: location.coordinate.latitude,
+            lng: location.coordinate.longitude,
+            createdTime: Date(),
+            arrivalTime: nil,
+            departureTime: nil,
+            transport: nil)
+        return locationRepository.add(loc)
     }
     
-    func stop​Monitoring​Visits() {
-        
+    func all() -> Promise<[Location]> {
+        return locationRepository.all()
+    }
+    
+    func deleteAll() -> Promise<Bool> {
+        return locationRepository.deleteAll()
     }
 }
 
-extension LocationService: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            let eventDate = location.timestamp
-            let howRecent = eventDate.timeIntervalSinceNow
-            if abs(howRecent) < 15.0 {
-                log.debug(location.description)
-                
-                let loc = Location(
-                    id: UUID().uuidString,
-                    lat: location.coordinate.latitude,
-                    lng: location.coordinate.longitude,
-                    createdTime: Date(),
-                    arrivalTime: nil,
-                    departureTime: nil,
-                    transport: nil)
-                locationRepository.add(loc)
-            }
-        }
-    }
-}
+//class LocationService: NSObject {
+//    
+//    var locationManager: CLLocationManager!
+//    let locationRepository = LocationRepository()
+//    
+//    func startStandardUpdates() {
+//        if locationManager == nil {
+//            locationManager = CLLocationManager()
+//        }
+//        
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        
+//        locationManager.distanceFilter = 10
+//        locationManager.startUpdatingLocation()
+//    }
+//    
+//    func startMonitoringVisits() {
+//        
+//    }
+//    
+//    func stop​Monitoring​Visits() {
+//        
+//    }
+//}
+//
+//extension LocationService: CLLocationManagerDelegate {
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        if let location = locations.last {
+//            let eventDate = location.timestamp
+//            let howRecent = eventDate.timeIntervalSinceNow
+//            if abs(howRecent) < 15.0 {
+//                log.debug(location.description)
+//                
+//                let loc = Location(
+//                    id: UUID().uuidString,
+//                    lat: location.coordinate.latitude,
+//                    lng: location.coordinate.longitude,
+//                    createdTime: Date(),
+//                    arrivalTime: nil,
+//                    departureTime: nil,
+//                    transport: nil)
+//                locationRepository.add(loc)
+//            }
+//        }
+//    }
+//}

@@ -22,6 +22,13 @@
 		BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE01E8E47790057A88C /* LocationViewController.swift */; };
 		BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE21E8E5CCA0057A88C /* LocationCell.swift */; };
 		BC338CE51E8E5EC90057A88C /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE41E8E5EC90057A88C /* DateExtensions.swift */; };
+		BC338CF01E8E67890057A88C /* BackgroundLocationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE81E8E67890057A88C /* BackgroundLocationCache.swift */; };
+		BC338CF11E8E67890057A88C /* BackgroundLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CE91E8E67890057A88C /* BackgroundLocationManager.swift */; };
+		BC338CF21E8E67890057A88C /* BackgroundTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEA1E8E67890057A88C /* BackgroundTrackable.swift */; };
+		BC338CF31E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEB1E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift */; };
+		BC338CF41E8E67890057A88C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEC1E8E67890057A88C /* Constants.swift */; };
+		BC338CF51E8E67890057A88C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CED1E8E67890057A88C /* Result.swift */; };
+		BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +51,13 @@
 		BC338CE01E8E47790057A88C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		BC338CE21E8E5CCA0057A88C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		BC338CE41E8E5EC90057A88C /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		BC338CE81E8E67890057A88C /* BackgroundLocationCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLocationCache.swift; sourceTree = "<group>"; };
+		BC338CE91E8E67890057A88C /* BackgroundLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLocationManager.swift; sourceTree = "<group>"; };
+		BC338CEA1E8E67890057A88C /* BackgroundTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTrackable.swift; sourceTree = "<group>"; };
+		BC338CEB1E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Distance.swift"; sourceTree = "<group>"; };
+		BC338CEC1E8E67890057A88C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BC338CED1E8E67890057A88C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingLocationManager.swift; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +167,7 @@
 		BC338CCA1E8E10140057A88C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CE61E8E67890057A88C /* BackgrounLocation */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -172,6 +187,20 @@
 				BC338CE21E8E5CCA0057A88C /* LocationCell.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		BC338CE61E8E67890057A88C /* BackgrounLocation */ = {
+			isa = PBXGroup;
+			children = (
+				BC338CE81E8E67890057A88C /* BackgroundLocationCache.swift */,
+				BC338CE91E8E67890057A88C /* BackgroundLocationManager.swift */,
+				BC338CEA1E8E67890057A88C /* BackgroundTrackable.swift */,
+				BC338CEB1E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift */,
+				BC338CEC1E8E67890057A88C /* Constants.swift */,
+				BC338CED1E8E67890057A88C /* Result.swift */,
+				BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */,
+			);
+			path = BackgrounLocation;
 			sourceTree = "<group>";
 		};
 		BE45C853E44357C39BBC4765 /* Pods */ = {
@@ -318,12 +347,19 @@
 				BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */,
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
 				BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */,
+				BC338CF21E8E67890057A88C /* BackgroundTrackable.swift in Sources */,
 				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
 				BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */,
+				BC338CF11E8E67890057A88C /* BackgroundLocationManager.swift in Sources */,
+				BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */,
+				BC338CF41E8E67890057A88C /* Constants.swift in Sources */,
+				BC338CF01E8E67890057A88C /* BackgroundLocationCache.swift in Sources */,
+				BC338CF31E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift in Sources */,
 				BC338CE51E8E5EC90057A88C /* DateExtensions.swift in Sources */,
 				BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */,
 				BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */,
 				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
+				BC338CF51E8E67890057A88C /* Result.swift in Sources */,
 				BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */,
 				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,
 			);

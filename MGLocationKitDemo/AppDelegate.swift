@@ -16,7 +16,10 @@ let log = XCGLogger.default
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var locationManager = TrackingLocationManager()
+    var backgroundLocationManager = BackgroundLocationManager()
+    let locationService = LocationService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -28,6 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: fileurl, fileLevel: .debug)
         log.logAppDetails()
+        
+        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+            log.debug("UIApplicationLaunchOptionsLocationKey")
+            
+            backgroundLocationManager.startBackground() { result in
+                if case let .Success(location) = result {
+                    self.locationService.add(location)
+                    log.debug(location.description)
+                }
+            }
+        }
         
         return true
     }
