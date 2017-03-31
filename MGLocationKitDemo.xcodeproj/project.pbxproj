@@ -12,9 +12,15 @@
 		BC338CB81E8E0F140057A88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB61E8E0F140057A88C /* Main.storyboard */; };
 		BC338CBA1E8E0F140057A88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB91E8E0F140057A88C /* Assets.xcassets */; };
 		BC338CBD1E8E0F140057A88C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */; };
+		BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC338CCB1E8E10200057A88C /* Model.xcdatamodeld */; };
+		BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CCE1E8E10760057A88C /* EntityMapper.swift */; };
+		BC338CD11E8E107F0057A88C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CD01E8E107F0057A88C /* Location.swift */; };
+		BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CD21E8E10D40057A88C /* LocationRepository.swift */; };
+		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09CC86C2D1CA29BEE2A37CE9 /* Pods-MGLocationKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		BC338CAF1E8E0F140057A88C /* MGLocationKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGLocationKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC338CB21E8E0F140057A88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC338CB41E8E0F140057A88C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,12 @@
 		BC338CB91E8E0F140057A88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC338CBC1E8E0F140057A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC338CBE1E8E0F140057A88C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC338CCC1E8E10200057A88C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BC338CCE1E8E10760057A88C /* EntityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMapper.swift; sourceTree = "<group>"; };
+		BC338CD01E8E107F0057A88C /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		BC338CD21E8E10D40057A88C /* LocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
+		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DC25D4961CDCB9137F8F0A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC338CA61E8E0F140057A88C = {
 			isa = PBXGroup;
 			children = (
 				BC338CB11E8E0F140057A88C /* MGLocationKitDemo */,
 				BC338CB01E8E0F140057A88C /* Products */,
+				BE45C853E44357C39BBC4765 /* Pods */,
+				7DC25D4961CDCB9137F8F0A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +77,12 @@
 		BC338CB11E8E0F140057A88C /* MGLocationKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BC338CC51E8E10140057A88C /* Models */,
+				BC338CC61E8E10140057A88C /* Services */,
+				BC338CC71E8E10140057A88C /* Repositories */,
+				BC338CC81E8E10140057A88C /* UI */,
+				BC338CC91E8E10140057A88C /* Extensions */,
+				BC338CCA1E8E10140057A88C /* Libraries */,
 				BC338CB21E8E0F140057A88C /* AppDelegate.swift */,
 				BC338CB41E8E0F140057A88C /* ViewController.swift */,
 				BC338CB61E8E0F140057A88C /* Main.storyboard */,
@@ -64,6 +93,61 @@
 			path = MGLocationKitDemo;
 			sourceTree = "<group>";
 		};
+		BC338CC51E8E10140057A88C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC338CCB1E8E10200057A88C /* Model.xcdatamodeld */,
+				BC338CCE1E8E10760057A88C /* EntityMapper.swift */,
+				BC338CD01E8E107F0057A88C /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BC338CC61E8E10140057A88C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BC338CC71E8E10140057A88C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				BC338CD21E8E10D40057A88C /* LocationRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		BC338CC81E8E10140057A88C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		BC338CC91E8E10140057A88C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BC338CCA1E8E10140057A88C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		BE45C853E44357C39BBC4765 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */,
+				09CC86C2D1CA29BEE2A37CE9 /* Pods-MGLocationKitDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC338CC11E8E0F140057A88C /* Build configuration list for PBXNativeTarget "MGLocationKitDemo" */;
 			buildPhases = (
+				C930383DAE65840F4BC3FD89 /* [CP] Check Pods Manifest.lock */,
 				BC338CAB1E8E0F140057A88C /* Sources */,
 				BC338CAC1E8E0F140057A88C /* Frameworks */,
 				BC338CAD1E8E0F140057A88C /* Resources */,
+				BD8866C2BA903A64BEDB5A6A /* [CP] Embed Pods Frameworks */,
+				EC8D173483A5C2CEF87134EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,13 +219,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BD8866C2BA903A64BEDB5A6A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C930383DAE65840F4BC3FD89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC8D173483A5C2CEF87134EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BC338CAB1E8E0F140057A88C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */,
 				BC338CB51E8E0F140057A88C /* ViewController.swift in Sources */,
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
+				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
+				BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */,
+				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +398,7 @@
 		};
 		BC338CC21E8E0F140057A88C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NN74NJ78BB;
@@ -272,6 +412,7 @@
 		};
 		BC338CC31E8E0F140057A88C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09CC86C2D1CA29BEE2A37CE9 /* Pods-MGLocationKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NN74NJ78BB;
@@ -302,8 +443,22 @@
 				BC338CC31E8E0F140057A88C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC338CCB1E8E10200057A88C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC338CCC1E8E10200057A88C /* Model.xcdatamodel */,
+			);
+			currentVersion = BC338CCC1E8E10200057A88C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC338CA71E8E0F140057A88C /* Project object */;
 }
