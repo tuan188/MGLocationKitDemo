@@ -31,8 +31,8 @@ class LocationService {
         return locationRepository.add(loc)
     }
     
-    func all() -> Promise<[Location]> {
-        return locationRepository.all()
+    func all(_ date: Date? = nil) -> Promise<[Location]> {
+        return locationRepository.all(date)
     }
     
     func deleteAll() -> Promise<Bool> {

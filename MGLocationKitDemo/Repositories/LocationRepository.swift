@@ -27,12 +27,19 @@ class LocationRepository {
             }
         }
     }
-    
-    func all() -> Promise<[Location]> {
+    func all(_ date: Date? = nil) -> Promise<[Location]> {
         return Promise { fulfill, reject in
             let context = NSManagedObjectContext.mr_()
             var locations = [Location]()
-            if let entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, in: context) as? [LocationEntity] {
+            var entities: [LocationEntity]?
+            if let date = date {
+                let predicate = NSPredicate(format: "createdTime >= %@ && createdTime < %@", date.date as NSDate, date.tomorrow.date as NSDate)
+                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, with: predicate, in: context) as? [LocationEntity]
+            }
+            else {
+                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, in: context) as? [LocationEntity]
+            }
+            if let entities = entities  {
                 for entity in entities {
                     locations.append(EntityMapper.location(from: entity))
                 }

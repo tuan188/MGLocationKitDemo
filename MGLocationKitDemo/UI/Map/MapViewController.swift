@@ -7,18 +7,83 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
 
+    @IBOutlet var mapView: MKMapView!
+    
+    var currentRoute: MKPolyline?
+    
+    let locationService = LocationService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        mapView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func pickDate(_ sender: Any) {
+        
+    }
+    
+    @IBAction func centerToCurrentLocation(_ sender: Any) {
+        centerToCurrentLocation()
+    }
+    
+    private func centerToCurrentLocation() {
+        if let location = mapView.userLocation.location {
+            centerCamera(to: location)
+        }
+    }
+    
+    private func centerCamera(to location: CLLocation) {
+        let camera = mapView.camera
+        camera.centerCoordinate = location.coordinate
+        
+        mapView.camera = camera
+        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500)
+        
+        mapView.setRegion(viewRegion, animated: true)
+    }
+    
+    @IBAction func drawRoute(_ sender: Any) {
+        locationService.all(Date()).then { [unowned self] locations -> Void in
+            let newRoute = self.polyline(locations: locations, title: "route")
+            DispatchQueue.main.async {
+                if let currentRoute = self.currentRoute {
+                    self.mapView.remove(currentRoute)
+                }
+                self.currentRoute = newRoute
+                self.mapView.add(self.currentRoute!)
+            }
+            
+        }.catch { (error) in
+            log.debug(error)
+        }
+        
+    }
+    
+    private func polyline(locations: [Location], title:String) -> MKPolyline {
+        var coords = locations.map { (location) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: location.lat,
+                                          longitude: location.lng)
+        }
+        
+        let polyline = MKPolyline(coordinates: &coords, count: locations.count)
+        polyline.title = title
+        
+        return polyline
     }
     
 
@@ -31,5 +96,27 @@ class MapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let circle = overlay as? MKCircle {
+            let renderer = MKCircleRenderer(circle: circle)
+            let isRegion = circle.title ?? "" == "regionPlanned"
+            renderer.fillColor = isRegion ? UIColor.blue.withAlphaComponent(0.2) : UIColor.red.withAlphaComponent(0.2)
+            return renderer
+        }
+        
+        
+        let isRegion = overlay.title ?? "" == "regions"
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = isRegion ? UIColor.red.withAlphaComponent(0.8) : UIColor.blue.withAlphaComponent(0.8)
+        renderer.lineWidth = isRegion ? 8.0 : 2.0
+        
+        return renderer
+    }
+    
+}
+
