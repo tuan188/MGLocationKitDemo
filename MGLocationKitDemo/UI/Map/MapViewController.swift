@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
     
     @IBOutlet var dateLabel: UILabel!
     
+    var circles: [MKCircle] = []
+    
     var currentDate: Date! {
         didSet {
             dateLabel.text = currentDate.dateString()
@@ -32,6 +34,8 @@ class MapViewController: UIViewController {
         currentDate = Date()
         
         mapView.delegate = self
+        
+        drawRegions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +116,24 @@ class MapViewController: UIViewController {
         polyline.title = title
         
         return polyline
+    }
+    
+    fileprivate func drawRegions() {
+        AppDelegate.sharedInstance().backgroundLocationManager.addedRegionsListener = { result in
+            if case let .Success(locations) = result {
+                self.circles.forEach({ circle in
+                    self.mapView.remove(circle)
+                })
+                
+                locations.forEach({ location in
+                    let circle = MKCircle(center: location.coordinate, radius: BackgroundLocationManager.RegionConfig.regionRadius)
+                    circle.title = "regionPlanned"
+                    self.mapView.add(circle)
+                    self.circles.append(circle)
+                })
+            }
+        }
+        
     }
     
 

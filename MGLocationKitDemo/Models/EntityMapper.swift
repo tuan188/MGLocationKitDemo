@@ -17,6 +17,7 @@ struct EntityMapper {
         entity.arrivalTime = location.arrivalTime as NSDate?
         entity.departureTime = location.departureTime as NSDate?
         entity.transport = location.transport
+        entity.isCard = location.isCard
     }
     
     static func location(from entity: LocationEntity) -> Location {
@@ -27,7 +28,9 @@ struct EntityMapper {
             createdTime: entity.createdTime! as Date,
             arrivalTime: entity.arrivalTime as Date?,
             departureTime: entity.departureTime as Date?,
-            transport: entity.transport)
+            transport: entity.transport,
+            isCard: entity.isCard
+        )
     }
     
     static func map(from event: Event, to entity: EventEntity) {

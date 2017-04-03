@@ -16,4 +16,5 @@ struct Location {
     let arrivalTime: Date?
     let departureTime: Date?
     let transport: String?
+    let isCard: Bool
 }

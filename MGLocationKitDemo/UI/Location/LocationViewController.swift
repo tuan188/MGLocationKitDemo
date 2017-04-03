@@ -22,7 +22,6 @@ class LocationViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        startTracking()
         loadData()
     }
     
@@ -49,33 +48,6 @@ class LocationViewController: UIViewController {
         
     }
 
-    func startTracking() {
-        AppDelegate.sharedInstance().backgroundLocationManager.start() { [unowned self] result in
-            if case let .Success(location) = result {
-                self.updateBackgroundLocation(location: location)
-            }
-        }
-        
-        AppDelegate.sharedInstance().locationManager.start {[unowned self] result in
-            if case let .Success(location) = result {
-                self.updateLocation(location: location)
-            }
-        }
-    }
-    
-    private func updateBackgroundLocation(location: CLLocation) {
-        self.locationService.add(location).catch { _ in }
-        event.add(content: location.description)
-        log.debug(location.description)
-        
-    }
-    
-    private func updateLocation(location: CLLocation) {
-        self.locationService.add(location).catch { _ in }
-        event.add(content: location.description)
-        log.debug(location.description)
-        
-    }
 }
 
 extension LocationViewController: UITableViewDelegate, UITableViewDataSource {

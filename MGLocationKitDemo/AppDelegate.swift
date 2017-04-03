@@ -9,6 +9,7 @@
 import UIKit
 import MagicalRecord
 import XCGLogger
+import CoreLocation
 
 let log = XCGLogger.default
 let event = EventService.sharedInstance
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var locationManager = TrackingLocationManager()
     var backgroundLocationManager = BackgroundLocationManager()
+    
     let locationService = LocationService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -35,15 +37,92 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
             event.add(content: "UIApplicationLaunchOptionsLocationKey")
             
-            backgroundLocationManager.startBackground() { result in
-                if case let .Success(location) = result {
-                    self.locationService.add(location).catch {_ in }
-                    event.add(content: location.description)
-                }
-            }
+            startMonitoringLocationInBackground()
+        }
+        else {
+            startTracking()
         }
         
         return true
+    }
+    
+    func startMonitoringLocationInBackground() {
+        backgroundLocationManager.startBackground() { result in
+            if case let .Success(location) = result {
+                self.locationService.add(location).catch {_ in }
+                event.add(content: location.description)
+            }
+        }
+    }
+    
+    func startTracking() {
+        backgroundLocationManager.start() { [unowned self] result in
+            if case let .Success(location) = result {
+                self.updateBackgroundLocation(location: location)
+            }
+        }
+        
+        locationManager.start {[unowned self] result in
+            if case let .Success(location) = result {
+                self.updateLocation(location: location)
+            }
+        }
+        
+        locationManager.startMonitoringVisits { [weak self] (result) in
+            if case let .Success(visit) = result {
+                if visit.departureDate == Date.distantFuture {
+                    self?.showNotification("arrived  \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString()) ")
+                    let location = Location(
+                        id: UUID().uuidString,
+                        lat: visit.coordinate.latitude,
+                        lng: visit.coordinate.longitude,
+                        createdTime: Date(),
+                        arrivalTime: visit.arrivalDate,
+                        departureTime: nil,
+                        transport: nil,
+                        isCard: true)
+                    self?.locationService.add(location)
+                }
+                else {
+                    self?.showNotification("left  \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString()) departDate \(visit.departureDate.fullDateString())")
+                    let location = Location(
+                        id: UUID().uuidString,
+                        lat: visit.coordinate.latitude,
+                        lng: visit.coordinate.longitude,
+                        createdTime: Date(),
+                        arrivalTime: visit.arrivalDate == Date.distantPast ? nil : visit.arrivalDate,
+                        departureTime: visit.departureDate,
+                        transport: nil,
+                        isCard: true)
+                    self?.locationService.add(location)
+                    
+                }
+            }
+            self?.startMonitoringLocationInBackground()
+        }
+    }
+    
+    func showNotification(_ message : String)  {
+        let localNotification = UILocalNotification()
+        localNotification.alertBody =  message
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.fireDate = Date()
+        UIApplication.shared.scheduleLocalNotification(localNotification)
+        
+    }
+    
+    private func updateBackgroundLocation(location: CLLocation) {
+        self.locationService.add(location).catch { _ in }
+        event.add(content: location.description)
+        log.debug(location.description)
+        
+    }
+    
+    private func updateLocation(location: CLLocation) {
+        self.locationService.add(location).catch { _ in }
+        event.add(content: location.description)
+        log.debug(location.description)
+        
     }
     
     func logFileURL() -> URL {

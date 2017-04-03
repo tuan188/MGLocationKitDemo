@@ -2,6 +2,12 @@ import CoreLocation
 
 public typealias Listener = (Result<CLLocation>) -> ()
 
+public typealias VisitTrackingListener = (Result<CLVisit>) -> ()
+
+protocol TrackingLocationManagerDelegate {
+    func trackingLocationManager(didVisit visit: CLVisit)
+}
+
 final public class TrackingLocationManager: NSObject {
     
     fileprivate lazy var significantLocationManager: CLLocationManager = {
@@ -14,11 +20,21 @@ final public class TrackingLocationManager: NSObject {
     
     fileprivate lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.distanceFilter = 100
+        manager.distanceFilter = 50  // default is 100
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         manager.allowsBackgroundLocationUpdates = true
 
+        return manager
+    }()
+    
+    fileprivate lazy var monitorVisitsLocationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.distanceFilter = 50  // default is 100
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.allowsBackgroundLocationUpdates = true
+        
         return manager
     }()
     
@@ -28,6 +44,11 @@ final public class TrackingLocationManager: NSObject {
     func startSignificantLocationChanges() {
         significantLocationManager.delegate = self
         significantLocationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func startMonitoringVisits(listener: @escaping VisitTrackingListener) {
+        monitorVisitsLocationManager.delegate = self
+        monitorVisitsLocationManager.startMonitoringVisits()
     }
     
     func requestLocation(listener: @escaping Listener) {
@@ -65,5 +86,9 @@ extension TrackingLocationManager: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
+        
     }
 }
