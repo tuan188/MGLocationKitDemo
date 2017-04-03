@@ -40,6 +40,7 @@ final public class TrackingLocationManager: NSObject {
     
     
     fileprivate var listener: Listener?
+    fileprivate var visitTrackingListener: VisitTrackingListener?
     
     func startSignificantLocationChanges() {
         significantLocationManager.delegate = self
@@ -47,6 +48,8 @@ final public class TrackingLocationManager: NSObject {
     }
     
     func startMonitoringVisits(listener: @escaping VisitTrackingListener) {
+        event.add(content: "startMonitoringVisits")
+        self.visitTrackingListener = listener
         monitorVisitsLocationManager.delegate = self
         monitorVisitsLocationManager.startMonitoringVisits()
     }
@@ -89,6 +92,7 @@ extension TrackingLocationManager: CLLocationManagerDelegate {
     }
     
     public func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
-        
+        event.add(content: "EVENT: visit " + visit.description)
+        self.visitTrackingListener?(Result.Success(visit))
     }
 }

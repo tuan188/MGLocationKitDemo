@@ -142,6 +142,8 @@ extension BackgroundLocationManager: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         let coordinates = regionCache.coordinates(for: region)
         let location =  CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        
+        event.add(content: "EVENT: didEnterRegion")
 
         self.tryToRefreshPosition() {[weak self] result in
             if case .Error(_) = result {
