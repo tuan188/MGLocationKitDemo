@@ -11,6 +11,7 @@ import MagicalRecord
 import XCGLogger
 
 let log = XCGLogger.default
+let event = EventService.sharedInstance
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,24 +27,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         MagicalRecord.setupAutoMigratingCoreDataStack()
         
-        let cacheDirectoryUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
-        let fileurl = cacheDirectoryUrl.appendingPathComponent("log.txt")
-        
-        log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: fileurl, fileLevel: .debug)
+        log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: logFileURL(), fileLevel: .debug)
         log.logAppDetails()
         
         if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
-            log.debug("UIApplicationLaunchOptionsLocationKey")
+            event.add(content: "UIApplicationLaunchOptionsLocationKey")
             
             backgroundLocationManager.startBackground() { result in
                 if case let .Success(location) = result {
-                    self.locationService.add(location)
-                    log.debug(location.description)
+                    self.locationService.add(location).catch {_ in }
+                    event.add(content: location.description)
                 }
             }
         }
         
         return true
+    }
+    
+    func logFileURL() -> URL {
+        let cacheDirectoryUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
+        return cacheDirectoryUrl.appendingPathComponent("log.txt")
+    }
+    
+    static var sharedInstance = {
+        return UIApplication.shared.delegate as! AppDelegate
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

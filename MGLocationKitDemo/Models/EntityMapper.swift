@@ -29,4 +29,14 @@ struct EntityMapper {
             departureTime: entity.departureTime as Date?,
             transport: entity.transport)
     }
+    
+    static func map(from event: Event, to entity: EventEntity) {
+        entity.id = event.id
+        entity.createdTime = event.createdTime as NSDate
+        entity.content = event.content
+    }
+    
+    static func event(from entity: EventEntity) -> Event {
+        return Event(id: entity.id!, createdTime: entity.createdTime! as Date, content: entity.content!)
+    }
 }

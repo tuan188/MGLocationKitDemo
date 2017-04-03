@@ -35,11 +35,6 @@ class LocationViewController: UIViewController {
         }
     }
     
-    
-    var appDelagete = {
-        return UIApplication.shared.delegate as! AppDelegate
-    }
-    
     @IBAction func refresh(_ sender: Any) {
         loadData()
     }
@@ -48,18 +43,20 @@ class LocationViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.loadData()
             }
+        }.catch { (error) in
+            log.error(error)
         }
         
     }
 
     func startTracking() {
-        appDelagete().backgroundLocationManager.start() { [unowned self] result in
+        AppDelegate.sharedInstance().backgroundLocationManager.start() { [unowned self] result in
             if case let .Success(location) = result {
                 self.updateBackgroundLocation(location: location)
             }
         }
         
-        appDelagete().locationManager.start {[unowned self] result in
+        AppDelegate.sharedInstance().locationManager.start {[unowned self] result in
             if case let .Success(location) = result {
                 self.updateLocation(location: location)
             }
@@ -67,12 +64,15 @@ class LocationViewController: UIViewController {
     }
     
     private func updateBackgroundLocation(location: CLLocation) {
-        self.locationService.add(location)
+        self.locationService.add(location).catch { _ in }
+        event.add(content: location.description)
         log.debug(location.description)
+        
     }
     
     private func updateLocation(location: CLLocation) {
-        self.locationService.add(location)
+        self.locationService.add(location).catch { _ in }
+        event.add(content: location.description)
         log.debug(location.description)
         
     }

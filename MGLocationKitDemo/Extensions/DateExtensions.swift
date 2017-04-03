@@ -24,6 +24,7 @@ extension Date {
     
     func fullDateString() -> String {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: self)
     }

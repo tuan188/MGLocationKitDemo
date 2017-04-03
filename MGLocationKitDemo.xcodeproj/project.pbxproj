@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC26D8511E91F92D00BD48BE /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8501E91F92D00BD48BE /* LogViewController.swift */; };
+		BC26D8531E9201BA00BD48BE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8521E9201BA00BD48BE /* Event.swift */; };
+		BC26D8551E92027E00BD48BE /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8541E92027E00BD48BE /* EventRepository.swift */; };
+		BC26D8571E9203BC00BD48BE /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8561E9203BC00BD48BE /* EventService.swift */; };
+		BC26D8591E92064700BD48BE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8581E92064700BD48BE /* EventViewController.swift */; };
+		BC26D85B1E92075D00BD48BE /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D85A1E92075D00BD48BE /* EventCell.swift */; };
 		BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CB21E8E0F140057A88C /* AppDelegate.swift */; };
 		BC338CB81E8E0F140057A88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB61E8E0F140057A88C /* Main.storyboard */; };
 		BC338CBA1E8E0F140057A88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB91E8E0F140057A88C /* Assets.xcassets */; };
@@ -34,6 +40,12 @@
 
 /* Begin PBXFileReference section */
 		09CC86C2D1CA29BEE2A37CE9 /* Pods-MGLocationKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		BC26D8501E91F92D00BD48BE /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		BC26D8521E9201BA00BD48BE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BC26D8541E92027E00BD48BE /* EventRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
+		BC26D8561E9203BC00BD48BE /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		BC26D8581E92064700BD48BE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		BC26D85A1E92075D00BD48BE /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		BC338CAF1E8E0F140057A88C /* MGLocationKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGLocationKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC338CB21E8E0F140057A88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC338CB71E8E0F140057A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +96,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BC26D84F1E91F8FD00BD48BE /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				BC26D8501E91F92D00BD48BE /* LogViewController.swift */,
+				BC26D8581E92064700BD48BE /* EventViewController.swift */,
+				BC26D85A1E92075D00BD48BE /* EventCell.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 		BC338CA61E8E0F140057A88C = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +147,7 @@
 				BC338CCB1E8E10200057A88C /* Model.xcdatamodeld */,
 				BC338CCE1E8E10760057A88C /* EntityMapper.swift */,
 				BC338CD01E8E107F0057A88C /* Location.swift */,
+				BC26D8521E9201BA00BD48BE /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				BC338CDA1E8E3BBE0057A88C /* LocationService.swift */,
+				BC26D8561E9203BC00BD48BE /* EventService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -141,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				BC338CD21E8E10D40057A88C /* LocationRepository.swift */,
+				BC26D8541E92027E00BD48BE /* EventRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -150,6 +175,7 @@
 			children = (
 				BC338CDC1E8E475E0057A88C /* Map */,
 				BC338CDE1E8E475E0057A88C /* Location */,
+				BC26D84F1E91F8FD00BD48BE /* Log */,
 				BC338CB61E8E0F140057A88C /* Main.storyboard */,
 				BC338CD41E8E39170057A88C /* MainTabBarViewController.swift */,
 			);
@@ -348,7 +374,13 @@
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
 				BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */,
 				BC338CF21E8E67890057A88C /* BackgroundTrackable.swift in Sources */,
+				BC26D85B1E92075D00BD48BE /* EventCell.swift in Sources */,
+				BC26D8551E92027E00BD48BE /* EventRepository.swift in Sources */,
+				BC26D8531E9201BA00BD48BE /* Event.swift in Sources */,
+				BC26D8571E9203BC00BD48BE /* EventService.swift in Sources */,
 				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
+				BC26D8511E91F92D00BD48BE /* LogViewController.swift in Sources */,
+				BC26D8591E92064700BD48BE /* EventViewController.swift in Sources */,
 				BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */,
 				BC338CF11E8E67890057A88C /* BackgroundLocationManager.swift in Sources */,
 				BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */,
