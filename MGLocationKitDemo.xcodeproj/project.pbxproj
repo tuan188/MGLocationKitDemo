@@ -13,6 +13,9 @@
 		BC26D8571E9203BC00BD48BE /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8561E9203BC00BD48BE /* EventService.swift */; };
 		BC26D8591E92064700BD48BE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D8581E92064700BD48BE /* EventViewController.swift */; };
 		BC26D85B1E92075D00BD48BE /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D85A1E92075D00BD48BE /* EventCell.swift */; };
+		BC26D85E1E9222DE00BD48BE /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D85D1E9222DE00BD48BE /* Popup.swift */; };
+		BC26D8601E92237000BD48BE /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26D85F1E92237000BD48BE /* DatePickerView.swift */; };
+		BC26D8641E92239600BD48BE /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC26D8631E92239600BD48BE /* DatePickerView.xib */; };
 		BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CB21E8E0F140057A88C /* AppDelegate.swift */; };
 		BC338CB81E8E0F140057A88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB61E8E0F140057A88C /* Main.storyboard */; };
 		BC338CBA1E8E0F140057A88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC338CB91E8E0F140057A88C /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		BC26D8561E9203BC00BD48BE /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		BC26D8581E92064700BD48BE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		BC26D85A1E92075D00BD48BE /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		BC26D85D1E9222DE00BD48BE /* Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		BC26D85F1E92237000BD48BE /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		BC26D8631E92239600BD48BE /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		BC338CAF1E8E0F140057A88C /* MGLocationKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGLocationKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC338CB21E8E0F140057A88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC338CB71E8E0F140057A88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +110,16 @@
 				BC26D85A1E92075D00BD48BE /* EventCell.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		BC26D85C1E9222C900BD48BE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC26D85D1E9222DE00BD48BE /* Popup.swift */,
+				BC26D85F1E92237000BD48BE /* DatePickerView.swift */,
+				BC26D8631E92239600BD48BE /* DatePickerView.xib */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		BC338CA61E8E0F140057A88C = {
@@ -173,6 +189,7 @@
 		BC338CC81E8E10140057A88C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BC26D85C1E9222C900BD48BE /* Common */,
 				BC338CDC1E8E475E0057A88C /* Map */,
 				BC338CDE1E8E475E0057A88C /* Location */,
 				BC26D84F1E91F8FD00BD48BE /* Log */,
@@ -311,6 +328,7 @@
 			files = (
 				BC338CBD1E8E0F140057A88C /* LaunchScreen.storyboard in Resources */,
 				BC338CBA1E8E0F140057A88C /* Assets.xcassets in Resources */,
+				BC26D8641E92239600BD48BE /* DatePickerView.xib in Resources */,
 				BC338CB81E8E0F140057A88C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +410,8 @@
 				BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */,
 				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
 				BC338CF51E8E67890057A88C /* Result.swift in Sources */,
+				BC26D8601E92237000BD48BE /* DatePickerView.swift in Sources */,
+				BC26D85E1E9222DE00BD48BE /* Popup.swift in Sources */,
 				BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */,
 				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,
 			);

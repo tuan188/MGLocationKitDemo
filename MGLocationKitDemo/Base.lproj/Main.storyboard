@@ -193,6 +193,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="ecv-bn-guC" id="wOZ-3C-gdp"/>
                         <outlet property="mapView" destination="u6h-Mc-ISL" id="seZ-dq-daj"/>
                     </connections>
                 </viewController>
@@ -219,11 +220,11 @@
             </objects>
             <point key="canvasLocation" x="25" y="756"/>
         </scene>
-        <!--Log-->
+        <!--Locations-->
         <scene sceneID="lRE-UT-gWR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zVr-yR-wgV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Log" image="track_order" id="KaW-Rs-ywl"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="track_order" id="KaW-Rs-ywl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mmw-co-nTz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -411,11 +412,11 @@
             </objects>
             <point key="canvasLocation" x="977" y="2439"/>
         </scene>
-        <!--Event-->
+        <!--Events-->
         <scene sceneID="xHP-Sk-R1M">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BVe-Z8-NHZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Event" image="Document-50" id="f7h-90-Nan"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="Document-50" id="f7h-90-Nan"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I7v-iU-RJD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

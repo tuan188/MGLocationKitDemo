@@ -17,8 +17,19 @@ class MapViewController: UIViewController {
     
     let locationService = LocationService()
     
+    var datePickerPopup: Popup!
+    
+    @IBOutlet var dateLabel: UILabel!
+    
+    var currentDate: Date! {
+        didSet {
+            dateLabel.text = currentDate.dateString()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentDate = Date()
         
         mapView.delegate = self
     }
@@ -34,7 +45,20 @@ class MapViewController: UIViewController {
     
     
     @IBAction func pickDate(_ sender: Any) {
-        
+        if datePickerPopup == nil {
+            let datePickerView = Bundle.main.loadNibNamed("DatePickerView", owner: self, options: nil)?[0] as! DatePickerView
+            datePickerPopup = Popup(contentView: datePickerView, height: 200)
+            datePickerView.okAction = { [weak self] date in
+                self?.datePickerPopup.close(completion: { 
+                    self?.currentDate = date
+                    self?.loadRoute()
+                })
+            }
+            datePickerView.cancelAction = { [weak self] in
+                self?.datePickerPopup.close(completion: nil)
+            }
+        }
+        datePickerPopup?.show()
     }
     
     @IBAction func centerToCurrentLocation(_ sender: Any) {
@@ -57,8 +81,8 @@ class MapViewController: UIViewController {
         mapView.setRegion(viewRegion, animated: true)
     }
     
-    @IBAction func drawRoute(_ sender: Any) {
-        locationService.all(Date()).then { [unowned self] locations -> Void in
+    private func loadRoute() {
+        locationService.all(currentDate).then { [unowned self] locations -> Void in
             let newRoute = self.polyline(locations: locations, title: "route")
             DispatchQueue.main.async {
                 if let currentRoute = self.currentRoute {
@@ -68,10 +92,14 @@ class MapViewController: UIViewController {
                 self.mapView.add(self.currentRoute!)
             }
             
-        }.catch { (error) in
-            log.debug(error)
+            }.catch { (error) in
+                log.debug(error)
         }
+    }
+    
+    @IBAction func drawRoute(_ sender: Any) {
         
+        loadRoute()
     }
     
     private func polyline(locations: [Location], title:String) -> MKPolyline {
