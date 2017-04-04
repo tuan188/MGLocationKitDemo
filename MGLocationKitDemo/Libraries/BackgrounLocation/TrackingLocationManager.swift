@@ -12,7 +12,6 @@ final public class TrackingLocationManager: NSObject {
     
     fileprivate lazy var significantLocationManager: CLLocationManager = {
         var locationManager: CLLocationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
         return locationManager
@@ -28,21 +27,22 @@ final public class TrackingLocationManager: NSObject {
         return manager
     }()
     
-    fileprivate lazy var monitorVisitsLocationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.distanceFilter = 50  // default is 100
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestAlwaysAuthorization()
-        manager.allowsBackgroundLocationUpdates = true
-        
-        return manager
-    }()
+//    fileprivate lazy var monitorVisitsLocationManager: CLLocationManager = {
+//        let manager = CLLocationManager()
+//        manager.distanceFilter = 50  // default is 100
+//        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.requestAlwaysAuthorization()
+//        manager.allowsBackgroundLocationUpdates = true
+//        
+//        return manager
+//    }()
     
     
     fileprivate var listener: Listener?
     fileprivate var visitTrackingListener: VisitTrackingListener?
     
     func startSignificantLocationChanges() {
+        event.add(content: "startSignificantLocationChanges")
         significantLocationManager.delegate = self
         significantLocationManager.startMonitoringSignificantLocationChanges()
     }
@@ -50,8 +50,8 @@ final public class TrackingLocationManager: NSObject {
     func startMonitoringVisits(listener: @escaping VisitTrackingListener) {
         event.add(content: "startMonitoringVisits")
         self.visitTrackingListener = listener
-        monitorVisitsLocationManager.delegate = self
-        monitorVisitsLocationManager.startMonitoringVisits()
+        locationManager.delegate = self
+        locationManager.startMonitoringVisits()
     }
     
     func requestLocation(listener: @escaping Listener) {

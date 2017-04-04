@@ -17,7 +17,7 @@ struct EntityMapper {
         entity.arrivalTime = location.arrivalTime as NSDate?
         entity.departureTime = location.departureTime as NSDate?
         entity.transport = location.transport
-        entity.isCard = location.isCard
+        entity.type = Int64(location.type.rawValue)
     }
     
     static func location(from entity: LocationEntity) -> Location {
@@ -29,7 +29,7 @@ struct EntityMapper {
             arrivalTime: entity.arrivalTime as Date?,
             departureTime: entity.departureTime as Date?,
             transport: entity.transport,
-            isCard: entity.isCard
+            type: LocationType(rawValue: Int(entity.type)) ?? .route
         )
     }
     

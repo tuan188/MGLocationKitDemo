@@ -25,7 +25,7 @@ class LocationCell: UITableViewCell {
             arrivalLabel.text = location.arrivalTime?.fullDateString() ?? ""
             departureLabel.text = location.departureTime?.fullDateString() ?? ""
             
-            self.backgroundColor = location.isCard ? UIColor.yellow : UIColor.white
+            self.backgroundColor = location.type.rawValue > 0 ? UIColor.yellow : UIColor.white
         }
     }
 

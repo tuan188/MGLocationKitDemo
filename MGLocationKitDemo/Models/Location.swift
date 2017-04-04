@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum LocationType: Int {
+    case route = 0
+    case arrival = 1
+    case departure = 2
+}
+
 struct Location {
     let id: String
     let lat: Double
@@ -16,5 +22,5 @@ struct Location {
     let arrivalTime: Date?
     let departureTime: Date?
     let transport: String?
-    let isCard: Bool
+    let type: LocationType
 }

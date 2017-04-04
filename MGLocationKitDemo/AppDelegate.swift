@@ -77,11 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         id: UUID().uuidString,
                         lat: visit.coordinate.latitude,
                         lng: visit.coordinate.longitude,
-                        createdTime: Date(),
+                        createdTime: visit.arrivalDate,
                         arrivalTime: visit.arrivalDate,
                         departureTime: nil,
                         transport: nil,
-                        isCard: true)
+                        type: .arrival)
                     self?.locationService.add(location)
                 }
                 else {
@@ -91,11 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         id: UUID().uuidString,
                         lat: visit.coordinate.latitude,
                         lng: visit.coordinate.longitude,
-                        createdTime: Date(),
+                        createdTime: visit.departureDate,
                         arrivalTime: visit.arrivalDate == Date.distantPast ? nil : visit.arrivalDate,
                         departureTime: visit.departureDate,
                         transport: nil,
-                        isCard: true)
+                        type: .departure)
                     self?.locationService.add(location)
                     
                 }

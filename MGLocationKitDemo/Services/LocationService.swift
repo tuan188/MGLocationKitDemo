@@ -28,7 +28,7 @@ class LocationService {
             arrivalTime: nil,
             departureTime: nil,
             transport: nil,
-            isCard: false)
+            type: .route)
         return locationRepository.add(loc)
     }
     
