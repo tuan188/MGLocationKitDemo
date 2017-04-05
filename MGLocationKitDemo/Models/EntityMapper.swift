@@ -18,6 +18,8 @@ struct EntityMapper {
         entity.departureTime = location.departureTime as NSDate?
         entity.transport = location.transport
         entity.type = Int64(location.type.rawValue)
+        entity.accuracy = location.accuracy
+        entity.speed = location.speed
     }
     
     static func location(from entity: LocationEntity) -> Location {
@@ -29,7 +31,9 @@ struct EntityMapper {
             arrivalTime: entity.arrivalTime as Date?,
             departureTime: entity.departureTime as Date?,
             transport: entity.transport,
-            type: LocationType(rawValue: Int(entity.type)) ?? .route
+            type: LocationType(rawValue: Int(entity.type)) ?? .route,
+            accuracy: entity.accuracy,
+            speed: entity.speed
         )
     }
     

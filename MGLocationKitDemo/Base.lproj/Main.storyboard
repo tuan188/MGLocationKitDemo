@@ -88,21 +88,37 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-39-zFY">
+                                                    <rect key="frame" x="58" y="9" width="61" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ynn-be-rPq">
+                                                    <rect key="frame" x="131" y="9" width="42" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="U3O-rO-X5Q" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="8" id="1qC-yo-KaD"/>
                                                 <constraint firstItem="wjI-U0-hjP" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="80" id="4JX-A9-4bw"/>
                                                 <constraint firstItem="JEn-0H-k2q" firstAttribute="centerY" secondItem="U3O-rO-X5Q" secondAttribute="centerY" id="5RP-YM-dxW"/>
                                                 <constraint firstItem="UOd-2a-Lfj" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="8" id="8TS-n2-wsZ"/>
+                                                <constraint firstItem="4Xl-39-zFY" firstAttribute="leading" secondItem="Txq-mG-pPb" secondAttribute="trailing" constant="12" id="Ffr-sv-vyZ"/>
                                                 <constraint firstItem="nXS-N3-vyl" firstAttribute="top" secondItem="UOd-2a-Lfj" secondAttribute="bottom" constant="2" id="HFh-K0-ogq"/>
                                                 <constraint firstItem="UOd-2a-Lfj" firstAttribute="top" secondItem="bch-a6-eL6" secondAttribute="bottom" constant="2" id="RZL-Aa-sVf"/>
                                                 <constraint firstItem="U3O-rO-X5Q" firstAttribute="top" secondItem="Txq-mG-pPb" secondAttribute="bottom" constant="2" id="WqL-Md-oye"/>
+                                                <constraint firstItem="Ynn-be-rPq" firstAttribute="leading" secondItem="4Xl-39-zFY" secondAttribute="trailing" constant="12" id="XZs-aa-Rt8"/>
                                                 <constraint firstItem="bch-a6-eL6" firstAttribute="top" secondItem="U3O-rO-X5Q" secondAttribute="bottom" constant="2" id="YSs-V4-4BV"/>
                                                 <constraint firstItem="nXS-N3-vyl" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leading" constant="16" id="bUD-C4-XTk"/>
                                                 <constraint firstItem="LiK-Wk-wQV" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="80" id="dA4-Ar-OZe"/>
                                                 <constraint firstItem="LiK-Wk-wQV" firstAttribute="centerY" secondItem="UOd-2a-Lfj" secondAttribute="centerY" id="dY2-nw-dXG"/>
+                                                <constraint firstItem="4Xl-39-zFY" firstAttribute="centerY" secondItem="Txq-mG-pPb" secondAttribute="centerY" id="dys-49-cq2"/>
                                                 <constraint firstItem="3r5-g0-vOD" firstAttribute="centerY" secondItem="nXS-N3-vyl" secondAttribute="centerY" id="gKK-f8-Bfd"/>
                                                 <constraint firstItem="JEn-0H-k2q" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="80" id="kYb-1g-NHg"/>
+                                                <constraint firstItem="Ynn-be-rPq" firstAttribute="centerY" secondItem="4Xl-39-zFY" secondAttribute="centerY" id="lCj-dy-KiX"/>
                                                 <constraint firstItem="3r5-g0-vOD" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="80" id="mOp-fB-Mrv"/>
                                                 <constraint firstItem="bch-a6-eL6" firstAttribute="leading" secondItem="YCU-AN-vkl" secondAttribute="leadingMargin" constant="8" id="p6f-C4-6h5"/>
                                                 <constraint firstItem="Txq-mG-pPb" firstAttribute="top" secondItem="YCU-AN-vkl" secondAttribute="topMargin" constant="1" id="pMP-8R-fqa"/>
@@ -111,10 +127,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="accuracyLabel" destination="4Xl-39-zFY" id="cfH-44-zvC"/>
                                             <outlet property="arrivalLabel" destination="LiK-Wk-wQV" id="102-2M-9Ci"/>
                                             <outlet property="departureLabel" destination="3r5-g0-vOD" id="qY6-nq-856"/>
                                             <outlet property="latLabel" destination="JEn-0H-k2q" id="czp-Hw-Bh9"/>
                                             <outlet property="lngLabel" destination="wjI-U0-hjP" id="eu4-ht-yMf"/>
+                                            <outlet property="speedLabel" destination="Ynn-be-rPq" id="S3b-gd-WgB"/>
                                             <outlet property="timeLabel" destination="Txq-mG-pPb" id="0zP-X6-Dw3"/>
                                         </connections>
                                     </tableViewCell>

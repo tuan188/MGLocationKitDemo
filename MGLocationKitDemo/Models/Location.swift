@@ -12,6 +12,10 @@ enum LocationType: Int {
     case route = 0
     case arrival = 1
     case departure = 2
+    
+    var description: String {
+        return String(describing: self)
+    }
 }
 
 struct Location {
@@ -23,4 +27,10 @@ struct Location {
     let departureTime: Date?
     let transport: String?
     let type: LocationType
+    let accuracy: Double
+    let speed: Double
+    
+    var description: String {
+        return [ type.description, createdTime.timeString, String(accuracy), String(speed)].joined(separator: " ")
+    }
 }

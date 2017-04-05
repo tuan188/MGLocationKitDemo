@@ -22,17 +22,24 @@ extension Date {
         return cal.date(byAdding: .day, value: 1, to: self)!
     }
     
-    func fullDateString() -> String {
+    var fullDateString: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: self)
     }
     
-    func dateString() -> String {
+    var dateString: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
+    
+    var timeString: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: self)
     }
 }

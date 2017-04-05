@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
     
     var currentDate: Date! {
         didSet {
-            dateLabel.text = currentDate.dateString()
+            dateLabel.text = currentDate.dateString
         }
     }
     
@@ -88,12 +88,17 @@ class MapViewController: UIViewController {
     private func loadRoute() {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let newRoute = self.polyline(locations: locations, title: "route")
+            let annotations = self.annotations(locations: locations)
+            
             DispatchQueue.main.async {
                 if let currentRoute = self.currentRoute {
                     self.mapView.remove(currentRoute)
                 }
                 self.currentRoute = newRoute
                 self.mapView.add(self.currentRoute!)
+                
+                self.removeAllAnnotations()
+                self.mapView.addAnnotations(annotations)
             }
             
             }.catch { (error) in
@@ -118,6 +123,13 @@ class MapViewController: UIViewController {
         return polyline
     }
     
+    private func annotations(locations: [Location]) -> [MapAnnotation] {
+        return locations.map { (location) -> MapAnnotation in
+            return MapAnnotation(title: location.description, coordinate: CLLocationCoordinate2DMake(location.lat, location.lng), type: location.type)
+        }
+    }
+    
+    
     fileprivate func drawRegions() {
         AppDelegate.sharedInstance().backgroundLocationManager.addedRegionsListener = { result in
             if case let .Success(locations) = result {
@@ -136,6 +148,11 @@ class MapViewController: UIViewController {
         
     }
     
+    fileprivate func removeAllAnnotations() {
+        if self.mapView.annotations.count > 0 {
+            mapView.removeAnnotations(mapView.annotations)
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -149,6 +166,39 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            return nil
+        }
+        
+        let reuseIdentifier = "annotationIdentifier"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        }
+        else {
+            annotationView?.annotation = annotation
+        }
+        
+        if let mapAnnotation = annotation as? MapAnnotation {
+            let image: UIImage
+            switch mapAnnotation.type {
+            case .arrival:
+                image = #imageLiteral(resourceName: "icon_annotation_green")
+            case .departure:
+                image = #imageLiteral(resourceName: "icon_annotation_blue")
+            default:
+                image = #imageLiteral(resourceName: "dot")
+            }
+            annotationView?.image = image
+        }
+        
+        return annotationView
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let circle = overlay as? MKCircle {
@@ -169,4 +219,18 @@ extension MapViewController: MKMapViewDelegate {
     }
     
 }
+
+class MapAnnotation: NSObject, MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(0, 0)
+    var type : LocationType
+    var title : String?
+    
+    init(title:String? = nil, coordinate: CLLocationCoordinate2D, type: LocationType) {
+        self.title = title
+        self.coordinate = coordinate
+        self.type = type
+    }
+}
+
 

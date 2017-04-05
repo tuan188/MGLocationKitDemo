@@ -83,7 +83,9 @@ extension TrackingLocationManager: CLLocationManagerDelegate {
         if manager == significantLocationManager {
             locationManager.requestLocation()
         } else {
-            listener?(Result.Success(location))
+            if abs(location.horizontalAccuracy) < 100 {
+                listener?(Result.Success(location))
+            }
         }
     }
     

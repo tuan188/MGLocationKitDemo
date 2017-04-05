@@ -15,7 +15,7 @@ class EventCell: UITableViewCell {
     
     var event: Event! {
         didSet {
-            timeLabel.text = event.createdTime.fullDateString()
+            timeLabel.text = event.createdTime.fullDateString
             eventLabel.text = event.content
         }
     }

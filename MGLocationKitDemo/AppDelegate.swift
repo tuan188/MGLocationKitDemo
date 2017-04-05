@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager.startMonitoringVisits { [weak self] (result) in
             if case let .Success(visit) = result {
                 if visit.departureDate == Date.distantFuture {
-                    let notifcation = "ARRIVED:  \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString())"
+                    let notifcation = "ARRIVED:  \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString)"
                     self?.showNotification(notifcation)
                     let location = Location(
                         id: UUID().uuidString,
@@ -81,11 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         arrivalTime: visit.arrivalDate,
                         departureTime: nil,
                         transport: nil,
-                        type: .arrival)
+                        type: .arrival,
+                        accuracy: visit.horizontalAccuracy,
+                        speed: 0)
                     self?.locationService.add(location)
                 }
                 else {
-                    let notification = "LEFT: \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString()) departDate \(visit.departureDate.fullDateString())"
+                    let notification = "LEFT: \(visit.coordinate.latitude) :: \(visit.coordinate.longitude) arrivalDate  \(visit.arrivalDate.fullDateString) departDate \(visit.departureDate.fullDateString)"
                     self?.showNotification(notification)
                     let location = Location(
                         id: UUID().uuidString,
@@ -95,7 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         arrivalTime: visit.arrivalDate == Date.distantPast ? nil : visit.arrivalDate,
                         departureTime: visit.departureDate,
                         transport: nil,
-                        type: .departure)
+                        type: .departure,
+                        accuracy: visit.horizontalAccuracy,
+                        speed: 0)
                     self?.locationService.add(location)
                     
                 }

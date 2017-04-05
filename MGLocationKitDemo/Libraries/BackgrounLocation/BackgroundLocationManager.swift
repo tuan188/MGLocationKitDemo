@@ -139,6 +139,10 @@ extension BackgroundLocationManager {
 
 extension BackgroundLocationManager: CLLocationManagerDelegate {
     
+    public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        
+    }
+    
     public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         let coordinates = regionCache.coordinates(for: region)
         let location =  CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
