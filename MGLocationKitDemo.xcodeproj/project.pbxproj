@@ -40,6 +40,7 @@
 		BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */; };
 		BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD19F1E97410800235DCB /* KMeans.swift */; };
 		BCAAD1A41E97417000235DCB /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A31E97417000235DCB /* Vector.swift */; };
+		BCAAD1A81E97934300235DCB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A71E97934300235DCB /* Constant.swift */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingLocationManager.swift; sourceTree = "<group>"; };
 		BCAAD19F1E97410800235DCB /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		BCAAD1A31E97417000235DCB /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		BCAAD1A71E97934300235DCB /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 				BC338CB91E8E0F140057A88C /* Assets.xcassets */,
 				BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */,
 				BC338CBE1E8E0F140057A88C /* Info.plist */,
+				BCAAD1A71E97934300235DCB /* Constant.swift */,
 			);
 			path = MGLocationKitDemo;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				BC26D8571E9203BC00BD48BE /* EventService.swift in Sources */,
 				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
 				BC26D8511E91F92D00BD48BE /* LogViewController.swift in Sources */,
+				BCAAD1A81E97934300235DCB /* Constant.swift in Sources */,
 				BCAAD1A41E97417000235DCB /* Vector.swift in Sources */,
 				BC26D8591E92064700BD48BE /* EventViewController.swift in Sources */,
 				BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */,

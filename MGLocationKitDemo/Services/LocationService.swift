@@ -68,18 +68,16 @@ class LocationService {
         return result
     }
     
-    func extractStopPoints(_ locations: [Location]) -> [LocationCluster] {
+    func extractStopPoints(_ locations: [Location]) -> (stopPoints: [LocationCluster], route: [Location]) {
         guard locations.count > 0 else {
-            return []
+            return ([], [])
         }
         
         var stopPoints = [LocationCluster]()
+        var route = [Location]()
         
         var currentCluster = LocationCluster()
 //        var previousCluster = currentCluster
-        
-        let distanceThreshold = 100.0  // m
-        let durationThreadhold = 600.0   // second , 10m
         
         func addToStopPoints(cluster: LocationCluster) {
             if let lastSP = stopPoints.last, lastSP.distance(from: cluster) < distanceThreshold {
@@ -124,21 +122,31 @@ class LocationService {
             }
             else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration < durationThreadhold {
 //                check()
+                route.append(contentsOf: currentCluster.locations)
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
             }
-            else if location.distance(from: previousLocation) < distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
-                currentCluster = LocationCluster(locations: [previousLocation, location])
-                currentCluster.type = .type3
-                addToStopPoints(cluster: currentCluster)
+            else {
+                route.append(location)
             }
-            else if location.distance(from: previousLocation) > distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
-                currentCluster = LocationCluster(locations: [location])
-                currentCluster.type = .type2
-            }
+//            else if location.distance(from: previousLocation) < distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
+//                currentCluster = LocationCluster(locations: [previousLocation, location])
+//                currentCluster.type = .type3
+//                addToStopPoints(cluster: currentCluster)
+//            }
+//            else if location.distance(from: previousLocation) > distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
+//                currentCluster = LocationCluster(locations: [location])
+//                currentCluster.type = .type2
+//            }
         }
         
-        return stopPoints
+        let routeFromStopPoints = stopPoints.map { (cluster) -> Location in
+            return cluster.centerLocation
+        }
+        route.append(contentsOf: routeFromStopPoints)
+        route.sort{ $0.createdTime < $1.createdTime }
+        
+        return (stopPoints, route)
     }
     
 }

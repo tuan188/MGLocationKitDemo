@@ -65,7 +65,12 @@ class LocationCluster {
     }
     
     var description: String {
-        return ["Count = " + String(numberOfLocations), "Time = " + String(duration)].joined(separator: "; ")
+        return [
+            "A: " + (self.arrivalTime?.timeString ?? ""),
+            "D: " + (self.departureTime?.timeString ?? ""),
+            "C: " + String(numberOfLocations)
+        ].joined(separator: "; ")
+//        return ["Count = " + String(numberOfLocations), "Time = " + String(duration)].joined(separator: "; ")
     }
     
     var centroid: CLLocation {

@@ -116,18 +116,25 @@ class MapViewController: UIViewController {
     private func loadProccessedRoute() {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let proccessedLocation = self.locationService.preprocessing(locations)
-            let newRoute = self.polyline(locations: proccessedLocation, title: "route")
             
-            let stopPoints = self.locationService.extractStopPoints(proccessedLocation)
+            
+            let (stopPoints, route) = self.locationService.extractStopPoints(proccessedLocation)
             let stopPointsAnnotations = self.annotations(clusters: stopPoints)
-            let annotations = self.annotationsWithoutStopPoints(locations: proccessedLocation)
+            let annotations = self.annotationsWithoutStopPoints(locations: route)
+            let newRoute = self.polyline(locations: route, title: "route")
+            let circles = self.circles(clusters: stopPoints)
             
             DispatchQueue.main.async {
                 self.currentRoute = newRoute
                 self.mapView.add(self.currentRoute!)
                 
-                self.mapView.addAnnotations(stopPointsAnnotations)
                 self.mapView.addAnnotations(annotations)
+                self.mapView.addAnnotations(stopPointsAnnotations)
+                self.circles = circles
+                circles.forEach({ (circle) in
+                    self.mapView.add(circle)
+                })
+                
             }
             
             }.catch { (error) in
@@ -136,6 +143,9 @@ class MapViewController: UIViewController {
     }
     
     private func clearMap() {
+        self.circles.forEach({ circle in
+            self.mapView.remove(circle)
+        })
         if let currentRoute = self.currentRoute {
             self.mapView.remove(currentRoute)
         }
@@ -174,21 +184,29 @@ class MapViewController: UIViewController {
     }
     
     
+    private func circles(clusters: [LocationCluster]) -> [MKCircle] {
+        return clusters.map({ (cluster) -> MKCircle in
+            let circle = MKCircle(center: cluster.centerLocation.location.coordinate, radius: distanceThreshold)
+            circle.title = "regionPlanned"
+            return circle
+        })
+    }
+    
     fileprivate func drawRegions() {
-        AppDelegate.sharedInstance().backgroundLocationManager.addedRegionsListener = { result in
-            if case let .Success(locations) = result {
-                self.circles.forEach({ circle in
-                    self.mapView.remove(circle)
-                })
-                
-                locations.forEach({ location in
-                    let circle = MKCircle(center: location.coordinate, radius: BackgroundLocationManager.RegionConfig.regionRadius)
-                    circle.title = "regionPlanned"
-                    self.mapView.add(circle)
-                    self.circles.append(circle)
-                })
-            }
-        }
+//        AppDelegate.sharedInstance().backgroundLocationManager.addedRegionsListener = { result in
+//            if case let .Success(locations) = result {
+//                self.circles.forEach({ circle in
+//                    self.mapView.remove(circle)
+//                })
+//                
+//                locations.forEach({ location in
+//                    let circle = MKCircle(center: location.coordinate, radius: BackgroundLocationManager.RegionConfig.regionRadius)
+//                    circle.title = "regionPlanned"
+//                    self.mapView.add(circle)
+//                    self.circles.append(circle)
+//                })
+//            }
+//        }
         
     }
     
