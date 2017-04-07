@@ -90,7 +90,7 @@ extension TrackingLocationManager: CLLocationManagerDelegate {
     }
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        event.add(content: error.localizedDescription)
     }
     
     public func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {

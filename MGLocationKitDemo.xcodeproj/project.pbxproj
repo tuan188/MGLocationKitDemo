@@ -38,6 +38,8 @@
 		BC338CF41E8E67890057A88C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEC1E8E67890057A88C /* Constants.swift */; };
 		BC338CF51E8E67890057A88C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CED1E8E67890057A88C /* Result.swift */; };
 		BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */; };
+		BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD19F1E97410800235DCB /* KMeans.swift */; };
+		BCAAD1A41E97417000235DCB /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A31E97417000235DCB /* Vector.swift */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,8 @@
 		BC338CEC1E8E67890057A88C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC338CED1E8E67890057A88C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingLocationManager.swift; sourceTree = "<group>"; };
+		BCAAD19F1E97410800235DCB /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
+		BCAAD1A31E97417000235DCB /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +177,8 @@
 			children = (
 				BC338CDA1E8E3BBE0057A88C /* LocationService.swift */,
 				BC26D8561E9203BC00BD48BE /* EventService.swift */,
+				BCAAD1A31E97417000235DCB /* Vector.swift */,
+				BCAAD19F1E97410800235DCB /* KMeans.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				BC26D8571E9203BC00BD48BE /* EventService.swift in Sources */,
 				BC338CD11E8E107F0057A88C /* Location.swift in Sources */,
 				BC26D8511E91F92D00BD48BE /* LogViewController.swift in Sources */,
+				BCAAD1A41E97417000235DCB /* Vector.swift in Sources */,
 				BC26D8591E92064700BD48BE /* EventViewController.swift in Sources */,
 				BC338CDF1E8E475E0057A88C /* MapViewController.swift in Sources */,
 				BC338CF11E8E67890057A88C /* BackgroundLocationManager.swift in Sources */,
@@ -411,6 +418,7 @@
 				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
 				BC338CF51E8E67890057A88C /* Result.swift in Sources */,
 				BC26D8601E92237000BD48BE /* DatePickerView.swift in Sources */,
+				BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */,
 				BC26D85E1E9222DE00BD48BE /* Popup.swift in Sources */,
 				BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */,
 				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,

@@ -237,9 +237,14 @@
                                     <action selector="centerToCurrentLocation:" destination="vtW-hZ-Rj1" id="Uyh-wh-Rpy"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Line Chart-50" id="7fU-pi-wUT">
+                            <barButtonItem title="Raw" id="7fU-pi-wUT">
                                 <connections>
                                     <action selector="drawRoute:" destination="vtW-hZ-Rj1" id="oSe-K2-5HB"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Processed" id="r2U-wc-xGu">
+                                <connections>
+                                    <action selector="drawProcessedRoute:" destination="vtW-hZ-Rj1" id="ajg-TY-l8i"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -486,7 +491,6 @@
     </scenes>
     <resources>
         <image name="Document-50" width="25" height="25"/>
-        <image name="Line Chart-50" width="25" height="25"/>
         <image name="Marker-50" width="25" height="25"/>
         <image name="map" width="25" height="25"/>
         <image name="track_order" width="25" height="25"/>

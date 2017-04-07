@@ -55,6 +55,7 @@ class MapViewController: UIViewController {
             datePickerView.okAction = { [weak self] date in
                 self?.datePickerPopup.close(completion: { 
                     self?.currentDate = date
+                    self?.clearMap()
                     self?.loadRoute()
                 })
             }
@@ -85,19 +86,25 @@ class MapViewController: UIViewController {
         mapView.setRegion(viewRegion, animated: true)
     }
     
+    @IBAction func drawRoute(_ sender: Any) {
+        clearMap()
+        loadRoute()
+    }
+    
+    @IBAction func drawProcessedRoute(_ sender: Any) {
+        clearMap()
+        loadProccessedRoute()
+    }
+    
     private func loadRoute() {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let newRoute = self.polyline(locations: locations, title: "route")
             let annotations = self.annotations(locations: locations)
             
             DispatchQueue.main.async {
-                if let currentRoute = self.currentRoute {
-                    self.mapView.remove(currentRoute)
-                }
                 self.currentRoute = newRoute
                 self.mapView.add(self.currentRoute!)
                 
-                self.removeAllAnnotations()
                 self.mapView.addAnnotations(annotations)
             }
             
@@ -106,10 +113,35 @@ class MapViewController: UIViewController {
         }
     }
     
-    @IBAction func drawRoute(_ sender: Any) {
-        
-        loadRoute()
+    private func loadProccessedRoute() {
+        locationService.all(currentDate).then { [unowned self] locations -> Void in
+            let proccessedLocation = self.locationService.preprocessing(locations)
+            let newRoute = self.polyline(locations: proccessedLocation, title: "route")
+            
+            let stopPoints = self.locationService.extractStopPoints(proccessedLocation)
+            let stopPointsAnnotations = self.annotations(clusters: stopPoints)
+            let annotations = self.annotationsWithoutStopPoints(locations: proccessedLocation)
+            
+            DispatchQueue.main.async {
+                self.currentRoute = newRoute
+                self.mapView.add(self.currentRoute!)
+                
+                self.mapView.addAnnotations(stopPointsAnnotations)
+                self.mapView.addAnnotations(annotations)
+            }
+            
+            }.catch { (error) in
+                log.debug(error)
+        }
     }
+    
+    private func clearMap() {
+        if let currentRoute = self.currentRoute {
+            self.mapView.remove(currentRoute)
+        }
+        self.removeAllAnnotations()
+    }
+    
     
     private func polyline(locations: [Location], title:String) -> MKPolyline {
         var coords = locations.map { (location) -> CLLocationCoordinate2D in
@@ -126,6 +158,18 @@ class MapViewController: UIViewController {
     private func annotations(locations: [Location]) -> [MapAnnotation] {
         return locations.map { (location) -> MapAnnotation in
             return MapAnnotation(title: location.description, coordinate: CLLocationCoordinate2DMake(location.lat, location.lng), type: location.type)
+        }
+    }
+    
+    private func annotationsWithoutStopPoints(locations: [Location]) -> [MapAnnotation] {
+        return locations.map { (location) -> MapAnnotation in
+            return MapAnnotation(title: location.description, coordinate: CLLocationCoordinate2DMake(location.lat, location.lng), type: .route)
+        }
+    }
+    
+    private func annotations(clusters: [LocationCluster]) -> [MapAnnotation] {
+        return clusters.map { (cluster) -> MapAnnotation in
+            return MapAnnotation(title: cluster.description, coordinate: cluster.centerLocation.location.coordinate, type: LocationType.arrival)
         }
     }
     

@@ -24,7 +24,7 @@ class LocationService {
             id: UUID().uuidString,
             lat: location.coordinate.latitude,
             lng: location.coordinate.longitude,
-            createdTime: Date(),
+            createdTime: location.timestamp,
             arrivalTime: nil,
             departureTime: nil,
             transport: nil,
@@ -41,6 +41,106 @@ class LocationService {
     func deleteAll() -> Promise<Bool> {
         return locationRepository.deleteAll()
     }
+    
+    func preprocessing(_ locations: [Location]) -> [Location] {
+        guard locations.count > 0 else {
+            return []
+        }
+        
+        var result = [Location]()
+        var previous = locations[0]
+        result.append(previous)
+        
+        let velocityThreshold = 20.0 // m/s
+        
+        for i in 1..<locations.count {
+            let location = locations[i]
+            let velocity = location.distance(from: previous)/location.duration(from: previous)
+            // TODO: threshold by transport
+            if velocity > velocityThreshold {
+                continue
+            } else {
+                result.append(location)
+                previous = location
+            }
+        }
+        
+        return result
+    }
+    
+    func extractStopPoints(_ locations: [Location]) -> [LocationCluster] {
+        guard locations.count > 0 else {
+            return []
+        }
+        
+        var stopPoints = [LocationCluster]()
+        
+        var currentCluster = LocationCluster()
+//        var previousCluster = currentCluster
+        
+        let distanceThreshold = 100.0  // m
+        let durationThreadhold = 600.0   // second , 10m
+        
+        func addToStopPoints(cluster: LocationCluster) {
+            if let lastSP = stopPoints.last, lastSP.distance(from: cluster) < distanceThreshold {
+                lastSP.merge(cluster)
+//                previousCluster = lastSP // add
+            }
+            else {
+                stopPoints.append(cluster)
+//                previousCluster = cluster
+            }
+        }
+        
+//        func check() {
+//            if currentCluster.duration(from: previousCluster) < durationThreadhold && currentCluster.distance(from: previousCluster) < distanceThreshold {
+//                
+//                previousCluster.merge(currentCluster)
+//                
+//                if previousCluster.type == .type2 {
+//                    addToStopPoints(cluster: previousCluster)
+//                }
+//                else {
+//                    previousCluster = currentCluster
+//                }
+//            }
+//        }
+        
+        currentCluster.add(locations[0])
+        currentCluster.type = .type2
+        
+        for i in 1..<locations.count {
+            let location = locations[i]
+            let previousLocation = locations[i-1]
+            
+            if currentCluster.distance(from: location) <= distanceThreshold {
+                currentCluster.add(location)
+            }
+            else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration > durationThreadhold {
+                
+                addToStopPoints(cluster: currentCluster)
+                currentCluster = LocationCluster(locations: [location])
+                currentCluster.type = .type2
+            }
+            else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration < durationThreadhold {
+//                check()
+                currentCluster = LocationCluster(locations: [location])
+                currentCluster.type = .type2
+            }
+            else if location.distance(from: previousLocation) < distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
+                currentCluster = LocationCluster(locations: [previousLocation, location])
+                currentCluster.type = .type3
+                addToStopPoints(cluster: currentCluster)
+            }
+            else if location.distance(from: previousLocation) > distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
+                currentCluster = LocationCluster(locations: [location])
+                currentCluster.type = .type2
+            }
+        }
+        
+        return stopPoints
+    }
+    
 }
 
 //class LocationService: NSObject {
