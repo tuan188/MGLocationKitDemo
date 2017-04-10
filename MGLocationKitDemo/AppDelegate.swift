@@ -31,11 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setLoggingLevel(MagicalRecordLoggingLevel.error)
         
         if !AppSettings.didLoadDefaultValue {
-            AppSettings.distanceThreshold = 60
-            AppSettings.durationThreshold = 5
-            AppSettings.horizontalAccuracy = 100
+            AppSettings.distanceThreshold = kDefaultDistanceThreshold
+            AppSettings.durationThreshold = kDefaultDurationThreadhold
+            AppSettings.horizontalAccuracy = kDefaultHorizontalAccuracy
+            AppSettings.showAnnotations = kDefaultShowAnnotations
             AppSettings.didLoadDefaultValue = true
-            AppSettings.showAnnotations = false
         }
         
         

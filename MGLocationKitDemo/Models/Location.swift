@@ -66,10 +66,10 @@ class LocationCluster {
     
     var description: String {
         return [
-            "A: " + (self.arrivalTime?.timeString ?? ""),
-            "D: " + (self.departureTime?.timeString ?? ""),
-            "C: " + String(numberOfLocations)
-        ].joined(separator: "; ")
+            (self.arrivalTime?.timeString ?? "~"),
+            " -> " + (self.departureTime?.timeString ?? "~"),
+            "locs: " + String(numberOfLocations)
+        ].joined(separator: " ")
 //        return ["Count = " + String(numberOfLocations), "Time = " + String(duration)].joined(separator: "; ")
     }
     

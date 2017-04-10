@@ -69,15 +69,15 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func restore(_ sender: Any) {
-        distanceThresholdSlider.value = 60
-        durationThresholdSlider.value = 5
-        horizontalAccuracySlider.value = 100
+        distanceThresholdSlider.value = Float(kDefaultDistanceThreshold)
+        durationThresholdSlider.value = Float(kDefaultDurationThreadhold)
+        horizontalAccuracySlider.value = Float(kDefaultHorizontalAccuracy)
         
         distanceThresholdLabel.text = String(Int(distanceThresholdSlider.value))
         durationThresholdLabel.text = String(Int(durationThresholdSlider.value))
         horizontalAccuracyLabel.text = String(Int(horizontalAccuracySlider.value))
         
-        annotationSwitch.isOn = false
+        annotationSwitch.isOn = kDefaultShowAnnotations
     }
     
 }

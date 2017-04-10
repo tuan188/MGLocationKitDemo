@@ -8,5 +8,7 @@
 
 import UIKit
 
-//let distanceThreshold = 60.0  // m
-//let durationThreadhold = 300.0   // second , 10m
+let kDefaultDistanceThreshold = 80.0  // m
+let kDefaultDurationThreadhold = 5.0   // second , 10m
+let kDefaultHorizontalAccuracy = 100.0
+let kDefaultShowAnnotations = false

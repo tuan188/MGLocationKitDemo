@@ -57,6 +57,11 @@ class LocationService {
         
         for i in 1..<locations.count {
             let location = locations[i]
+            if location.type == .arrival || location.type == .departure {
+                result.append(location)
+                previous = location
+                continue
+            }
             if abs(location.accuracy) > horizontalAccuracy {
                 continue
             }
@@ -111,9 +116,15 @@ class LocationService {
 //                }
 //            }
 //        }
+        let firstLocation = locations[0]
+        currentCluster.add(firstLocation)
+        currentCluster.type = .type1
         
-        currentCluster.add(locations[0])
-        currentCluster.type = .type2
+        if firstLocation.type == .departure {
+            addToStopPoints(cluster: currentCluster)
+            currentCluster = LocationCluster()
+            currentCluster.type = .type2
+        }
         
         for i in 1..<locations.count {
             let location = locations[i]
@@ -121,6 +132,11 @@ class LocationService {
             
             if currentCluster.distance(from: location) <= distanceThreshold {
                 currentCluster.add(location)
+                if currentCluster.type == .type1 {
+                    addToStopPoints(cluster: currentCluster)
+                    currentCluster = LocationCluster()
+                    currentCluster.type = .type2
+                }
             }
             else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration > durationThreadhold {
                 
@@ -146,6 +162,10 @@ class LocationService {
 //                currentCluster = LocationCluster(locations: [location])
 //                currentCluster.type = .type2
 //            }
+        }
+        
+        if currentCluster.numberOfLocations > 1 {
+            addToStopPoints(cluster: currentCluster)
         }
         
         let routeFromStopPoints = stopPoints.map { (cluster) -> Location in

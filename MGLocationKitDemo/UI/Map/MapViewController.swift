@@ -39,7 +39,6 @@ class MapViewController: UIViewController {
         drawRegions()
         
         _ = after(interval: 1).then {[weak self] _ -> Void in
-            self?.centerToCurrentLocation()
             self?.drawProcessedRoute()
         }
         
@@ -92,6 +91,33 @@ class MapViewController: UIViewController {
         mapView.setRegion(viewRegion, animated: true)
     }
     
+    fileprivate func zoomMapWithLocation(_ locations:[Location]) {
+        var zoomRect = MKMapRectNull
+        let coordinates = locations.map { (location) -> CLLocationCoordinate2D in
+            return location.location.coordinate
+        }
+        coordinates.forEach { (coordinate) in
+            let point = MKMapPointForCoordinate(coordinate)
+            let pointRect = MKMapRectMake(point.x, point.y, 0.1, 0.1)
+            zoomRect = MKMapRectUnion(zoomRect, pointRect)
+        }
+        let insetWidth = -zoomRect.size.width * 0.2
+        let insetHeight = -zoomRect.size.height * 0.2
+        self.mapView.setVisibleMapRect(MKMapRectInset(zoomRect, insetWidth, insetHeight), animated: true)
+    }
+    
+    fileprivate func zoomMapWithCoordinates(_ coordinates:[CLLocationCoordinate2D]) {
+        var zoomRect = MKMapRectNull
+        coordinates.forEach { (coordinate) in
+            let point = MKMapPointForCoordinate(coordinate)
+            let pointRect = MKMapRectMake(point.x, point.y, 0.1, 0.1)
+            zoomRect = MKMapRectUnion(zoomRect, pointRect)
+        }
+        let insetWidth = -zoomRect.size.width * 0.2
+        let insetHeight = -zoomRect.size.height * 0.2
+        self.mapView.setVisibleMapRect(MKMapRectInset(zoomRect, insetWidth, insetHeight), animated: true)
+    }
+    
     @IBAction func drawRoute(_ sender: Any) {
         clearMap()
         loadRoute()
@@ -119,6 +145,7 @@ class MapViewController: UIViewController {
                 if annotations.count > 0 {
                     self.mapView.addAnnotations(annotations)
                 }
+                self.zoomMapWithLocation(locations)
             }
             
             }.catch { (error) in
@@ -146,6 +173,7 @@ class MapViewController: UIViewController {
                 if annotations.count > 0 {
                     self.mapView.addAnnotations(annotations)
                 }
+                self.zoomMapWithLocation(proccessedLocation)
                 self.mapView.addAnnotations(stopPointsAnnotations)
                 self.circles = circles
                 circles.forEach({ (circle) in

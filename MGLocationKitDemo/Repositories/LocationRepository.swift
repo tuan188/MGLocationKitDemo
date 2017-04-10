@@ -34,10 +34,10 @@ class LocationRepository {
             var entities: [LocationEntity]?
             if let date = date {
                 let predicate = NSPredicate(format: "createdTime >= %@ && createdTime < %@", date.date as NSDate, date.tomorrow.date as NSDate)
-                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, with: predicate, in: context) as? [LocationEntity]
+                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: true, with: predicate, in: context) as? [LocationEntity]
             }
             else {
-                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: false, in: context) as? [LocationEntity]
+                entities = LocationEntity.mr_findAllSorted(by: "createdTime", ascending: true, in: context) as? [LocationEntity]
             }
             if let entities = entities  {
                 for entity in entities {
