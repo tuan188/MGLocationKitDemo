@@ -14,9 +14,9 @@ protocol SettingsViewControllerDelegate: class {
 
 class SettingsViewController: UITableViewController {
     
-    @IBOutlet var distanceThresholdSlider: UISlider!
-    @IBOutlet var durationThresholdSlider: UISlider!
-    @IBOutlet var horizontalAccuracySlider: UISlider!
+    @IBOutlet var distanceThresholdStepper: UIStepper!
+    @IBOutlet var durationThresholdStepper: UIStepper!
+    @IBOutlet var horizontalAccuracyStepper: UIStepper!
     @IBOutlet var annotationSwitch: UISwitch!
     
     @IBOutlet var distanceThresholdLabel: UILabel!
@@ -28,26 +28,26 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        distanceThresholdSlider.value = Float(AppSettings.distanceThreshold)
-        durationThresholdSlider.value = Float(AppSettings.durationThreshold)
-        horizontalAccuracySlider.value = Float(AppSettings.horizontalAccuracy)
+        distanceThresholdStepper.value = AppSettings.distanceThreshold
+        durationThresholdStepper.value = AppSettings.durationThreshold
+        horizontalAccuracyStepper.value = AppSettings.horizontalAccuracy
         annotationSwitch.isOn = AppSettings.showAnnotations
 
-        distanceThresholdLabel.text = String(Int(distanceThresholdSlider.value))
-        durationThresholdLabel.text = String(Int(durationThresholdSlider.value))
-        horizontalAccuracyLabel.text = String(Int(horizontalAccuracySlider.value))
+        distanceThresholdLabel.text = String(Int(distanceThresholdStepper.value))
+        durationThresholdLabel.text = String(Int(durationThresholdStepper.value))
+        horizontalAccuracyLabel.text = String(Int(horizontalAccuracyStepper.value))
     }
 
-    @IBAction func distanceThresholdSliderValueChanged(_ sender: Any) {
-        distanceThresholdLabel.text = String(Int(distanceThresholdSlider.value))
+    @IBAction func distanceThresholdStepperValueChanged(_ sender: Any) {
+        distanceThresholdLabel.text = String(Int(distanceThresholdStepper.value))
     }
 
-    @IBAction func durationThresholdSliderValueChanged(_ sender: Any) {
-        durationThresholdLabel.text = String(Int(durationThresholdSlider.value))
+    @IBAction func durationThresholdStepperValueChanged(_ sender: Any) {
+        durationThresholdLabel.text = String(Int(durationThresholdStepper.value))
     }
     
-    @IBAction func horizontalAccuracySliderValueChanged(_ sender: Any) {
-        horizontalAccuracyLabel.text = String(Int(horizontalAccuracySlider.value))
+    @IBAction func horizontalAccuracyStepperValueChanged(_ sender: Any) {
+        horizontalAccuracyLabel.text = String(Int(horizontalAccuracyStepper.value))
     }
     
     @IBAction func annotationSwitchValueChanged(_ sender: Any) {
@@ -55,9 +55,9 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func save(_ sender: Any) {
-        AppSettings.distanceThreshold = Double(Int(distanceThresholdSlider.value))
-        AppSettings.durationThreshold = Double(Int(durationThresholdSlider.value))
-        AppSettings.horizontalAccuracy = Double(Int(horizontalAccuracySlider.value))
+        AppSettings.distanceThreshold = Double(Int(distanceThresholdStepper.value))
+        AppSettings.durationThreshold = Double(Int(durationThresholdStepper.value))
+        AppSettings.horizontalAccuracy = Double(Int(horizontalAccuracyStepper.value))
         AppSettings.showAnnotations = annotationSwitch.isOn
         
         self.dismiss(animated: true, completion: nil)
@@ -69,13 +69,13 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func restore(_ sender: Any) {
-        distanceThresholdSlider.value = Float(kDefaultDistanceThreshold)
-        durationThresholdSlider.value = Float(kDefaultDurationThreadhold)
-        horizontalAccuracySlider.value = Float(kDefaultHorizontalAccuracy)
+        distanceThresholdStepper.value = kDefaultDistanceThreshold
+        durationThresholdStepper.value = kDefaultDurationThreadhold
+        horizontalAccuracyStepper.value = kDefaultHorizontalAccuracy
         
-        distanceThresholdLabel.text = String(Int(distanceThresholdSlider.value))
-        durationThresholdLabel.text = String(Int(durationThresholdSlider.value))
-        horizontalAccuracyLabel.text = String(Int(horizontalAccuracySlider.value))
+        distanceThresholdLabel.text = String(Int(distanceThresholdStepper.value))
+        durationThresholdLabel.text = String(Int(durationThresholdStepper.value))
+        horizontalAccuracyLabel.text = String(Int(horizontalAccuracyStepper.value))
         
         annotationSwitch.isOn = kDefaultShowAnnotations
     }
