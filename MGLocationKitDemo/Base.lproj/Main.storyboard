@@ -289,7 +289,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="80" minimumValue="30" maximumValue="300" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="nuv-8N-usR">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="80" minimumValue="30" maximumValue="300" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="nuv-8N-usR">
                                                     <rect key="frame" x="266" y="7" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="distanceThresholdStepperValueChanged:" destination="RQ5-mw-UUg" eventType="valueChanged" id="r2K-ZP-aax"/>
@@ -361,7 +361,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" maximumValue="300" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-qA-dI6">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" maximumValue="300" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-qA-dI6">
                                                     <rect key="frame" x="266" y="7" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="horizontalAccuracyStepperValueChanged:" destination="RQ5-mw-UUg" eventType="valueChanged" id="aZ2-Kf-ohP"/>

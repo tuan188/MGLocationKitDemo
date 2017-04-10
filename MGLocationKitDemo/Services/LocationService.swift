@@ -85,6 +85,7 @@ class LocationService {
         
         var stopPoints = [LocationCluster]()
         var route = [Location]()
+        var tempRoute = [Location]()
         
         var currentCluster = LocationCluster()
 //        var previousCluster = currentCluster
@@ -92,14 +93,16 @@ class LocationService {
         let distanceThreshold = AppSettings.distanceThreshold
         let durationThreadhold = AppSettings.durationThreshold * 60
         
-        func addToStopPoints(cluster: LocationCluster) {
+        func addToStopPoints(cluster: LocationCluster) -> Bool {
             if let lastSP = stopPoints.last, lastSP.distance(from: cluster) < distanceThreshold {
                 lastSP.merge(cluster)
 //                previousCluster = lastSP // add
+                return false
             }
             else {
                 stopPoints.append(cluster)
 //                previousCluster = cluster
+                return true
             }
         }
         
@@ -121,38 +124,41 @@ class LocationService {
         currentCluster.type = .type1
         
         if firstLocation.type == .departure {
-            addToStopPoints(cluster: currentCluster)
+            _ = addToStopPoints(cluster: currentCluster)
             currentCluster = LocationCluster()
             currentCluster.type = .type2
         }
         
         for i in 1..<locations.count {
             let location = locations[i]
-            let previousLocation = locations[i-1]
+//            let previousLocation = locations[i-1]
             
             if currentCluster.distance(from: location) <= distanceThreshold {
                 currentCluster.add(location)
-                if currentCluster.type == .type1 {
-                    addToStopPoints(cluster: currentCluster)
-                    currentCluster = LocationCluster()
-                    currentCluster.type = .type2
-                }
+//                if currentCluster.type == .type1 {
+//                    addToStopPoints(cluster: currentCluster)
+//                    currentCluster = LocationCluster()
+//                    currentCluster.type = .type2
+//                }
             }
             else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration > durationThreadhold {
                 
-                addToStopPoints(cluster: currentCluster)
+                if addToStopPoints(cluster: currentCluster) {
+                    route.append(contentsOf: tempRoute)
+                }
+                tempRoute = []
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
             }
             else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration < durationThreadhold {
 //                check()
-                route.append(contentsOf: currentCluster.locations)
+                tempRoute.append(contentsOf: currentCluster.locations)
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
             }
-            else {
-                route.append(location)
-            }
+//            else {
+//                route.append(location)
+//            }
 //            else if location.distance(from: previousLocation) < distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
 //                currentCluster = LocationCluster(locations: [previousLocation, location])
 //                currentCluster.type = .type3
@@ -165,7 +171,9 @@ class LocationService {
         }
         
         if currentCluster.numberOfLocations > 1 {
-            addToStopPoints(cluster: currentCluster)
+            if addToStopPoints(cluster: currentCluster) {
+                route.append(contentsOf: tempRoute)
+            }
         }
         
         let routeFromStopPoints = stopPoints.map { (cluster) -> Location in
