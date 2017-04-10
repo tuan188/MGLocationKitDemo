@@ -19,7 +19,7 @@ final public class TrackingLocationManager: NSObject {
     
     fileprivate lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.distanceFilter = 50  // default is 100
+        manager.distanceFilter = 10  // default is 100
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         manager.allowsBackgroundLocationUpdates = true
@@ -83,9 +83,9 @@ extension TrackingLocationManager: CLLocationManagerDelegate {
         if manager == significantLocationManager {
             locationManager.requestLocation()
         } else {
-            if abs(location.horizontalAccuracy) < 100 {
+//            if abs(location.horizontalAccuracy) < 100 {
                 listener?(Result.Success(location))
-            }
+//            }
         }
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import PromiseKit
 
 class MapViewController: UIViewController {
 
@@ -36,6 +37,12 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         
         drawRegions()
+        
+        _ = after(interval: 1).then {[weak self] _ -> Void in
+            self?.centerToCurrentLocation()
+            self?.drawProcessedRoute()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +62,7 @@ class MapViewController: UIViewController {
             datePickerView.okAction = { [weak self] date in
                 self?.datePickerPopup.close(completion: { 
                     self?.currentDate = date
-                    self?.clearMap()
-                    self?.loadRoute()
+                    self?.drawProcessedRoute()
                 })
             }
             datePickerView.cancelAction = { [weak self] in
@@ -92,6 +98,10 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func drawProcessedRoute(_ sender: Any) {
+        drawProcessedRoute()
+    }
+    
+    fileprivate func drawProcessedRoute() {
         clearMap()
         loadProccessedRoute()
     }
@@ -99,13 +109,16 @@ class MapViewController: UIViewController {
     private func loadRoute() {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let newRoute = self.polyline(locations: locations, title: "route")
+            
             let annotations = self.annotations(locations: locations)
             
             DispatchQueue.main.async {
                 self.currentRoute = newRoute
                 self.mapView.add(self.currentRoute!)
                 
-                self.mapView.addAnnotations(annotations)
+                if annotations.count > 0 {
+                    self.mapView.addAnnotations(annotations)
+                }
             }
             
             }.catch { (error) in
@@ -117,10 +130,12 @@ class MapViewController: UIViewController {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let proccessedLocation = self.locationService.preprocessing(locations)
             
-            
             let (stopPoints, route) = self.locationService.extractStopPoints(proccessedLocation)
+            var annotations = [MapAnnotation]()
+            if AppSettings.showAnnotations {
+                annotations = self.annotationsWithoutStopPoints(locations: route)
+            }
             let stopPointsAnnotations = self.annotations(clusters: stopPoints)
-            let annotations = self.annotationsWithoutStopPoints(locations: route)
             let newRoute = self.polyline(locations: route, title: "route")
             let circles = self.circles(clusters: stopPoints)
             
@@ -128,7 +143,9 @@ class MapViewController: UIViewController {
                 self.currentRoute = newRoute
                 self.mapView.add(self.currentRoute!)
                 
-                self.mapView.addAnnotations(annotations)
+                if annotations.count > 0 {
+                    self.mapView.addAnnotations(annotations)
+                }
                 self.mapView.addAnnotations(stopPointsAnnotations)
                 self.circles = circles
                 circles.forEach({ (circle) in
@@ -179,12 +196,18 @@ class MapViewController: UIViewController {
     
     private func annotations(clusters: [LocationCluster]) -> [MapAnnotation] {
         return clusters.map { (cluster) -> MapAnnotation in
-            return MapAnnotation(title: cluster.description, coordinate: cluster.centerLocation.location.coordinate, type: LocationType.arrival)
+            return MapAnnotation(title: cluster.description, coordinate: cluster.centerLocation.location.coordinate, type: .arrival)
+            
+//            let point = MKPointAnnotation()
+//            point.coordinate = cluster.centerLocation.location.coordinate
+//            point.title = cluster.description
+//            return point
         }
     }
     
     
     private func circles(clusters: [LocationCluster]) -> [MKCircle] {
+        let distanceThreshold = AppSettings.distanceThreshold
         return clusters.map({ (cluster) -> MKCircle in
             let circle = MKCircle(center: cluster.centerLocation.location.coordinate, radius: distanceThreshold)
             circle.title = "regionPlanned"
@@ -216,15 +239,25 @@ class MapViewController: UIViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        if identifier == "presentSettings",
+            let settingsViewController = (segue.destination as? UINavigationController)?.topViewController as? SettingsViewController {
+            settingsViewController.delegate = self
+        }
     }
-    */
+}
+
+extension MapViewController: SettingsViewControllerDelegate {
+    func settingsViewControllerDidSave() {
+        self.drawProcessedRoute()
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -235,7 +268,6 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         let reuseIdentifier = "annotationIdentifier"
-        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         if annotationView == nil {
@@ -258,6 +290,7 @@ extension MapViewController: MKMapViewDelegate {
             }
             annotationView?.image = image
         }
+     
         
         return annotationView
     }

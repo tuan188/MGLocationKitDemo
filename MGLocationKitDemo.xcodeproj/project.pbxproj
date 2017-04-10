@@ -41,6 +41,8 @@
 		BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD19F1E97410800235DCB /* KMeans.swift */; };
 		BCAAD1A41E97417000235DCB /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A31E97417000235DCB /* Vector.swift */; };
 		BCAAD1A81E97934300235DCB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A71E97934300235DCB /* Constant.swift */; };
+		BCC975771E9B29B5005A14B3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */; };
+		BCC975791E9B30E7005A14B3 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975781E9B30E7005A14B3 /* AppSettings.swift */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,8 @@
 		BCAAD19F1E97410800235DCB /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		BCAAD1A31E97417000235DCB /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		BCAAD1A71E97934300235DCB /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BCC975781E9B30E7005A14B3 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +160,7 @@
 				BC338CC91E8E10140057A88C /* Extensions */,
 				BC338CCA1E8E10140057A88C /* Libraries */,
 				BC338CB21E8E0F140057A88C /* AppDelegate.swift */,
+				BCC975781E9B30E7005A14B3 /* AppSettings.swift */,
 				BC338CB91E8E0F140057A88C /* Assets.xcassets */,
 				BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */,
 				BC338CBE1E8E0F140057A88C /* Info.plist */,
@@ -198,6 +203,7 @@
 		BC338CC81E8E10140057A88C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BCC975751E9B29A6005A14B3 /* Settings */,
 				BC26D85C1E9222C900BD48BE /* Common */,
 				BC338CDC1E8E475E0057A88C /* Map */,
 				BC338CDE1E8E475E0057A88C /* Location */,
@@ -253,6 +259,14 @@
 				BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */,
 			);
 			path = BackgrounLocation;
+			sourceTree = "<group>";
+		};
+		BCC975751E9B29A6005A14B3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		BE45C853E44357C39BBC4765 /* Pods */ = {
@@ -420,6 +434,8 @@
 				BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */,
 				BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */,
 				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
+				BCC975791E9B30E7005A14B3 /* AppSettings.swift in Sources */,
+				BCC975771E9B29B5005A14B3 /* SettingsViewController.swift in Sources */,
 				BC338CF51E8E67890057A88C /* Result.swift in Sources */,
 				BC26D8601E92237000BD48BE /* DatePickerView.swift in Sources */,
 				BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */,

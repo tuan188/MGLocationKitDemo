@@ -8,5 +8,5 @@
 
 import UIKit
 
-let distanceThreshold = 60.0  // m
-let durationThreadhold = 300.0   // second , 10m
+//let distanceThreshold = 60.0  // m
+//let durationThreadhold = 300.0   // second , 10m

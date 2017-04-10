@@ -53,8 +53,13 @@ class LocationService {
         
         let velocityThreshold = 20.0 // m/s
         
+        let horizontalAccuracy = AppSettings.horizontalAccuracy
+        
         for i in 1..<locations.count {
             let location = locations[i]
+            if abs(location.accuracy) > horizontalAccuracy {
+                continue
+            }
             let velocity = location.distance(from: previous)/location.duration(from: previous)
             // TODO: threshold by transport
             if velocity > velocityThreshold {
@@ -78,6 +83,9 @@ class LocationService {
         
         var currentCluster = LocationCluster()
 //        var previousCluster = currentCluster
+        
+        let distanceThreshold = AppSettings.distanceThreshold
+        let durationThreadhold = AppSettings.durationThreshold * 60
         
         func addToStopPoints(cluster: LocationCluster) {
             if let lastSP = stopPoints.last, lastSP.distance(from: cluster) < distanceThreshold {

@@ -30,6 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupAutoMigratingCoreDataStack()
         MagicalRecord.setLoggingLevel(MagicalRecordLoggingLevel.error)
         
+        if !AppSettings.didLoadDefaultValue {
+            AppSettings.distanceThreshold = 60
+            AppSettings.durationThreshold = 5
+            AppSettings.horizontalAccuracy = 100
+            AppSettings.didLoadDefaultValue = true
+            AppSettings.showAnnotations = false
+        }
+        
         
         log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: logFileURL(), fileLevel: .debug)
         log.logAppDetails()
