@@ -88,7 +88,12 @@ class LocationCluster {
         return CLLocation(latitude: centroidLat/Double(locations.count), longitude: centroidLng/Double(locations.count))
     }
     
+    private var _centerLocation: Location?
+    
     var centerLocation: Location {
+        if let location = _centerLocation {
+            return location
+        }
         var index = 0
         let center = self.centroid
         
@@ -97,7 +102,8 @@ class LocationCluster {
                 index = i
             }
         }
-        return locations[index]
+        _centerLocation = locations[index]
+        return _centerLocation!
     }
     
     var duration: TimeInterval {
@@ -131,10 +137,12 @@ class LocationCluster {
     
     func add(_ location: Location) {
         locations.append(location)
+        _centerLocation = nil
     }
     
     func add(_ locations: [Location]) {
         self.locations.append(contentsOf: locations)
+        _centerLocation = nil
     }
     
     func distance(from location: Location) -> Double {
@@ -167,5 +175,6 @@ class LocationCluster {
     
     func merge(_ cluster: LocationCluster) {
         locations.append(contentsOf: cluster.locations)
+        _centerLocation = nil
     }
 }

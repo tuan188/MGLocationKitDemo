@@ -14,6 +14,8 @@ import CoreLocation
 let log = XCGLogger.default
 let event = EventService.sharedInstance
 
+var currentDate = Date()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

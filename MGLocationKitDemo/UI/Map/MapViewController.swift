@@ -24,15 +24,13 @@ class MapViewController: UIViewController {
     
     var circles: [MKCircle] = []
     
-    var currentDate: Date! {
-        didSet {
-            dateLabel.text = currentDate.dateString
-        }
+    private func updateDateLabel() {
+        dateLabel.text = currentDate.dateString
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentDate = Date()
+        updateDateLabel()
         
         mapView.delegate = self
         
@@ -59,8 +57,9 @@ class MapViewController: UIViewController {
             let datePickerView = Bundle.main.loadNibNamed("DatePickerView", owner: self, options: nil)?[0] as! DatePickerView
             datePickerPopup = Popup(contentView: datePickerView, height: 200)
             datePickerView.okAction = { [weak self] date in
-                self?.datePickerPopup.close(completion: { 
-                    self?.currentDate = date
+                currentDate = date
+                self?.updateDateLabel()
+                self?.datePickerPopup.close(completion: {
                     self?.drawProcessedRoute(zoomMap: true)
                 })
             }

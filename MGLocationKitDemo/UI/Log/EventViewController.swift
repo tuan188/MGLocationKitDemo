@@ -21,7 +21,7 @@ class EventViewController: UIViewController {
     }
 
     fileprivate func loadData() {
-        event.all().then { [weak self] eventList -> Void in
+        event.all(currentDate).then { [weak self] eventList -> Void in
             self?.events = eventList
             self?.tableView.reloadData()
             }.catch { (error) in

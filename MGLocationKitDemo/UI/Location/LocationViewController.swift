@@ -26,7 +26,7 @@ class LocationViewController: UIViewController {
     }
     
     fileprivate func loadData() {
-        locationService.all().then { [weak self] locationList -> Void in
+        locationService.all(currentDate).then { [weak self] locationList -> Void in
             self?.locations = locationList
             self?.tableView.reloadData()
         }.catch { (error) in

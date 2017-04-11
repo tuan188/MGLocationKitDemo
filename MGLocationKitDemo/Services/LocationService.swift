@@ -83,63 +83,41 @@ class LocationService {
             return ([], [])
         }
         
+        let distanceThreshold = AppSettings.distanceThreshold
+        let durationThreadhold = AppSettings.durationThreshold * 60
+        
         var stopPoints = [LocationCluster]()
         var route = [Location]()
         var tempRoute = [Location]()
-        
         var currentCluster = LocationCluster()
-//        var previousCluster = currentCluster
-        
-        let distanceThreshold = AppSettings.distanceThreshold
-        let durationThreadhold = AppSettings.durationThreshold * 60
         
         func addToStopPoints(cluster: LocationCluster) -> Bool {
             if let lastSP = stopPoints.last, lastSP.distance(from: cluster) < distanceThreshold {
                 lastSP.merge(cluster)
-//                previousCluster = lastSP // add
                 return false
             }
             else {
                 stopPoints.append(cluster)
-//                previousCluster = cluster
                 return true
             }
         }
         
-//        func check() {
-//            if currentCluster.duration(from: previousCluster) < durationThreadhold && currentCluster.distance(from: previousCluster) < distanceThreshold {
-//                
-//                previousCluster.merge(currentCluster)
-//                
-//                if previousCluster.type == .type2 {
-//                    addToStopPoints(cluster: previousCluster)
-//                }
-//                else {
-//                    previousCluster = currentCluster
-//                }
-//            }
-//        }
         let firstLocation = locations[0]
         currentCluster.add(firstLocation)
-        currentCluster.type = .type1
         
         if firstLocation.type == .departure {
+            currentCluster.type = .type1
             _ = addToStopPoints(cluster: currentCluster)
+            
             currentCluster = LocationCluster()
             currentCluster.type = .type2
         }
         
         for i in 1..<locations.count {
             let location = locations[i]
-//            let previousLocation = locations[i-1]
             
             if currentCluster.distance(from: location) <= distanceThreshold {
-                currentCluster.add(location)
-//                if currentCluster.type == .type1 {
-//                    addToStopPoints(cluster: currentCluster)
-//                    currentCluster = LocationCluster()
-//                    currentCluster.type = .type2
-//                }
+                currentCluster.add(location)   // type 2
             }
             else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration > durationThreadhold {
                 
@@ -150,38 +128,37 @@ class LocationService {
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
             }
-            else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration < durationThreadhold {
-//                check()
+            else {
                 tempRoute.append(contentsOf: currentCluster.locations)
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
+                
+                if location.type == .arrival || location.type == .departure {
+                    if addToStopPoints(cluster: currentCluster) {
+                        route.append(contentsOf: tempRoute)
+                    }
+                    tempRoute = []
+                    
+                    currentCluster = LocationCluster()
+                    currentCluster.type = .type2
+                }
             }
-//            else {
-//                route.append(location)
-//            }
-//            else if location.distance(from: previousLocation) < distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
-//                currentCluster = LocationCluster(locations: [previousLocation, location])
-//                currentCluster.type = .type3
-//                addToStopPoints(cluster: currentCluster)
-//            }
-//            else if location.distance(from: previousLocation) > distanceThreshold && location.duration(from: previousLocation) > durationThreadhold {
-//                currentCluster = LocationCluster(locations: [location])
-//                currentCluster.type = .type2
-//            }
         }
         
-        if currentCluster.numberOfLocations > 1 {
-            _ = addToStopPoints(cluster: currentCluster)
+        if currentCluster.numberOfLocations > 1  {
+            if addToStopPoints(cluster: currentCluster) {
+                route.append(contentsOf: tempRoute)
+            }
         }
         else {
             route.append(contentsOf: currentCluster.locations)
+            route.append(contentsOf: tempRoute)
         }
-        
-        route.append(contentsOf: tempRoute)
         
         let routeFromStopPoints = stopPoints.map { (cluster) -> Location in
             return cluster.centerLocation
         }
+        
         route.append(contentsOf: routeFromStopPoints)
         route.sort{ $0.createdTime < $1.createdTime }
         
@@ -189,52 +166,3 @@ class LocationService {
     }
     
 }
-
-//class LocationService: NSObject {
-//    
-//    var locationManager: CLLocationManager!
-//    let locationRepository = LocationRepository()
-//    
-//    func startStandardUpdates() {
-//        if locationManager == nil {
-//            locationManager = CLLocationManager()
-//        }
-//        
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        
-//        locationManager.distanceFilter = 10
-//        locationManager.startUpdatingLocation()
-//    }
-//    
-//    func startMonitoringVisits() {
-//        
-//    }
-//    
-//    func stop​Monitoring​Visits() {
-//        
-//    }
-//}
-//
-//extension LocationService: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.last {
-//            let eventDate = location.timestamp
-//            let howRecent = eventDate.timeIntervalSinceNow
-//            if abs(howRecent) < 15.0 {
-//                log.debug(location.description)
-//                
-//                let loc = Location(
-//                    id: UUID().uuidString,
-//                    lat: location.coordinate.latitude,
-//                    lng: location.coordinate.longitude,
-//                    createdTime: Date(),
-//                    arrivalTime: nil,
-//                    departureTime: nil,
-//                    transport: nil)
-//                locationRepository.add(loc)
-//            }
-//        }
-//    }
-//}
