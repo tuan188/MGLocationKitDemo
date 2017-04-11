@@ -39,7 +39,7 @@ class MapViewController: UIViewController {
         drawRegions()
         
         _ = after(interval: 1).then {[weak self] _ -> Void in
-            self?.drawProcessedRoute()
+            self?.drawProcessedRoute(zoomMap: true)
         }
         
     }
@@ -61,7 +61,7 @@ class MapViewController: UIViewController {
             datePickerView.okAction = { [weak self] date in
                 self?.datePickerPopup.close(completion: { 
                     self?.currentDate = date
-                    self?.drawProcessedRoute()
+                    self?.drawProcessedRoute(zoomMap: true)
                 })
             }
             datePickerView.cancelAction = { [weak self] in
@@ -120,19 +120,19 @@ class MapViewController: UIViewController {
     
     @IBAction func drawRoute(_ sender: Any) {
         clearMap()
-        loadRoute()
+        loadRoute(zoomMap: false)
     }
     
     @IBAction func drawProcessedRoute(_ sender: Any) {
         drawProcessedRoute()
     }
     
-    fileprivate func drawProcessedRoute() {
+    fileprivate func drawProcessedRoute(zoomMap: Bool = false) {
         clearMap()
-        loadProccessedRoute()
+        loadProccessedRoute(zoomMap: zoomMap)
     }
     
-    private func loadRoute() {
+    private func loadRoute(zoomMap: Bool) {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let newRoute = self.polyline(locations: locations, title: "route")
             
@@ -145,7 +145,9 @@ class MapViewController: UIViewController {
                 if annotations.count > 0 {
                     self.mapView.addAnnotations(annotations)
                 }
-                self.zoomMapWithLocation(locations)
+                if zoomMap {
+                    self.zoomMapWithLocation(locations)
+                }
             }
             
             }.catch { (error) in
@@ -153,7 +155,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func loadProccessedRoute() {
+    private func loadProccessedRoute(zoomMap: Bool) {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
             let proccessedLocation = self.locationService.preprocessing(locations)
             
@@ -173,7 +175,9 @@ class MapViewController: UIViewController {
                 if annotations.count > 0 {
                     self.mapView.addAnnotations(annotations)
                 }
-                self.zoomMapWithLocation(proccessedLocation)
+                if zoomMap {
+                    self.zoomMapWithLocation(proccessedLocation)
+                }
                 self.mapView.addAnnotations(stopPointsAnnotations)
                 self.circles = circles
                 circles.forEach({ (circle) in

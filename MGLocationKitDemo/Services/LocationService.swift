@@ -171,10 +171,13 @@ class LocationService {
         }
         
         if currentCluster.numberOfLocations > 1 {
-            if addToStopPoints(cluster: currentCluster) {
-                route.append(contentsOf: tempRoute)
-            }
+            _ = addToStopPoints(cluster: currentCluster)
         }
+        else {
+            route.append(contentsOf: currentCluster.locations)
+        }
+        
+        route.append(contentsOf: tempRoute)
         
         let routeFromStopPoints = stopPoints.map { (cluster) -> Location in
             return cluster.centerLocation
