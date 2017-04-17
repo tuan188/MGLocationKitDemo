@@ -237,7 +237,7 @@
                                     <action selector="centerToCurrentLocation:" destination="vtW-hZ-Rj1" id="Uyh-wh-Rpy"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Raw Data" id="7fU-pi-wUT">
+                            <barButtonItem title="Raw" id="7fU-pi-wUT">
                                 <connections>
                                     <action selector="drawRoute:" destination="vtW-hZ-Rj1" id="oSe-K2-5HB"/>
                                 </connections>
@@ -249,9 +249,14 @@
                                     <segue destination="hmf-ij-ZhJ" kind="presentation" identifier="presentSettings" id="jIC-df-bH2"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Processed Data" id="r2U-wc-xGu">
+                            <barButtonItem title="Process1" id="r2U-wc-xGu">
                                 <connections>
                                     <action selector="drawProcessedRoute:" destination="vtW-hZ-Rj1" id="ajg-TY-l8i"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Proccess2" id="YY5-lR-jc1">
+                                <connections>
+                                    <action selector="drawProcessedRoute2:" destination="vtW-hZ-Rj1" id="mHp-eL-hsN"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

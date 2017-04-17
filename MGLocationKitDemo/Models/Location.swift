@@ -25,7 +25,7 @@ struct Location {
     let lng: Double
     let createdTime: Date
     let arrivalTime: Date?
-    let departureTime: Date?
+    var departureTime: Date?
     let transport: String?
     let type: LocationType
     let accuracy: Double
@@ -73,6 +73,16 @@ class LocationCluster {
 //        return ["Count = " + String(numberOfLocations), "Time = " + String(duration)].joined(separator: "; ")
     }
     
+    var location: Location? {
+        guard numberOfLocations > 1 else {
+            if numberOfLocations == 1 {
+                return locations.first!
+            }
+            return nil
+        }
+        return Location(id: self.centerLocation.id, lat: self.centerLocation.lat, lng: self.centerLocation.lng, createdTime: self.departureTime!, arrivalTime: self.arrivalTime, departureTime: self.departureTime, transport: nil, type: .departure, accuracy: 0, speed: 0)
+    }
+    
     var centroid: CLLocation {
         if locations.count == 0 {
             return CLLocation()
@@ -118,10 +128,22 @@ class LocationCluster {
     }
     
     var arrivalTime: Date? {
+        let arrivalLocations = self.locations.filter { $0.arrivalTime != nil }
+        if arrivalLocations.count > 0 {
+            return arrivalLocations.min(by: { (l1, l2) -> Bool in
+                return l1.arrivalTime! < l2.arrivalTime!
+            })?.arrivalTime
+        }
         return locations.min { $0.createdTime < $1.createdTime }?.createdTime
     }
     
     var departureTime: Date? {
+        let departureLocations = self.locations.filter { $0.departureTime != nil }
+        if departureLocations.count > 0 {
+            return departureLocations.max(by: { (l1, l2) -> Bool in
+                return l1.departureTime! < l2.departureTime!
+            })?.departureTime
+        }
         return locations.max { $0.createdTime < $1.createdTime }?.createdTime
     }
     
