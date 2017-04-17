@@ -27,7 +27,7 @@ class LocationViewController: UIViewController {
     
     fileprivate func loadData() {
         locationService.all(currentDate).then { [weak self] locationList -> Void in
-            self?.locations = locationList
+            self?.locations = locationList.sorted { $0.createdTime > $1.createdTime }
             self?.tableView.reloadData()
         }.catch { (error) in
             print(error)

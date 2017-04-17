@@ -119,7 +119,7 @@ class LocationService {
             if currentCluster.distance(from: location) <= distanceThreshold {
                 currentCluster.add(location)   // type 2
             }
-            else if currentCluster.distance(from: location) > distanceThreshold && currentCluster.duration > durationThreadhold {
+            else if currentCluster.duration > durationThreadhold {
                 
                 if addToStopPoints(cluster: currentCluster) {
                     route.append(contentsOf: tempRoute)
@@ -132,7 +132,6 @@ class LocationService {
                 if let clusterLocation = currentCluster.location {
                     tempRoute.append(clusterLocation)
                 }
-                
                 currentCluster = LocationCluster(locations: [location])
                 currentCluster.type = .type2
                 
@@ -148,8 +147,15 @@ class LocationService {
             }
         }
         
-        route.append(contentsOf: currentCluster.locations)
-        route.append(contentsOf: tempRoute)
+        if currentCluster.numberOfLocations > 1  {
+            if addToStopPoints(cluster: currentCluster) {
+                route.append(contentsOf: tempRoute)
+            }
+        }
+        else {
+            route.append(contentsOf: currentCluster.locations)
+            route.append(contentsOf: tempRoute)
+        }
         
         let routeFromStopPoints = stopPoints.map { (cluster) -> Location in
             return cluster.centerLocation

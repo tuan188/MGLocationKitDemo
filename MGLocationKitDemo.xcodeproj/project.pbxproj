@@ -43,6 +43,12 @@
 		BCAAD1A81E97934300235DCB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A71E97934300235DCB /* Constant.swift */; };
 		BCC975771E9B29B5005A14B3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */; };
 		BCC975791E9B30E7005A14B3 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975781E9B30E7005A14B3 /* AppSettings.swift */; };
+		BCE47D7F1EA46B0C009DE796 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */; };
+		BCE47D811EA46B70009DE796 /* LocationShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D801EA46B70009DE796 /* LocationShareModel.swift */; };
+		BCE47D831EA46D22009DE796 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */; };
+		BCE47D8B1EA46E82009DE796 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D861EA46E82009DE796 /* BackgroundTaskManager.m */; };
+		BCE47D8C1EA46E82009DE796 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D881EA46E82009DE796 /* LocationShareModel.m */; };
+		BCE47D8D1EA46E82009DE796 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D8A1EA46E82009DE796 /* LocationTracker.m */; };
 		F1AB3FB91870DD468A985039 /* Pods_MGLocationKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +92,16 @@
 		BCAAD1A71E97934300235DCB /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BCC975781E9B30E7005A14B3 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		BCE47D801EA46B70009DE796 /* LocationShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationShareModel.swift; sourceTree = "<group>"; };
+		BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
+		BCE47D851EA46E82009DE796 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
+		BCE47D861EA46E82009DE796 /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
+		BCE47D871EA46E82009DE796 /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
+		BCE47D881EA46E82009DE796 /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
+		BCE47D891EA46E82009DE796 /* LocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
+		BCE47D8A1EA46E82009DE796 /* LocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
+		BCE47D911EA46FF9009DE796 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		BEC10C7E12A1277973139BC3 /* Pods_MGLocationKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGLocationKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1379EA49C3DDCD2A1F28C44 /* Pods-MGLocationKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGLocationKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGLocationKitDemo/Pods-MGLocationKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +176,7 @@
 				BC338CC91E8E10140057A88C /* Extensions */,
 				BC338CCA1E8E10140057A88C /* Libraries */,
 				BC338CB21E8E0F140057A88C /* AppDelegate.swift */,
+				BCE47D911EA46FF9009DE796 /* Bridging-Header.h */,
 				BCC975781E9B30E7005A14B3 /* AppSettings.swift */,
 				BC338CB91E8E0F140057A88C /* Assets.xcassets */,
 				BC338CBB1E8E0F140057A88C /* LaunchScreen.storyboard */,
@@ -187,6 +204,9 @@
 				BC26D8561E9203BC00BD48BE /* EventService.swift */,
 				BCAAD1A31E97417000235DCB /* Vector.swift */,
 				BCAAD19F1E97410800235DCB /* KMeans.swift */,
+				BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */,
+				BCE47D801EA46B70009DE796 /* LocationShareModel.swift */,
+				BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -225,6 +245,7 @@
 		BC338CCA1E8E10140057A88C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BCE47D841EA46E82009DE796 /* LocationTracker */,
 				BC338CE61E8E67890057A88C /* BackgrounLocation */,
 			);
 			path = Libraries;
@@ -267,6 +288,19 @@
 				BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		BCE47D841EA46E82009DE796 /* LocationTracker */ = {
+			isa = PBXGroup;
+			children = (
+				BCE47D851EA46E82009DE796 /* BackgroundTaskManager.h */,
+				BCE47D861EA46E82009DE796 /* BackgroundTaskManager.m */,
+				BCE47D871EA46E82009DE796 /* LocationShareModel.h */,
+				BCE47D881EA46E82009DE796 /* LocationShareModel.m */,
+				BCE47D891EA46E82009DE796 /* LocationTracker.h */,
+				BCE47D8A1EA46E82009DE796 /* LocationTracker.m */,
+			);
+			path = LocationTracker;
 			sourceTree = "<group>";
 		};
 		BE45C853E44357C39BBC4765 /* Pods */ = {
@@ -432,13 +466,19 @@
 				BC338CF31E8E67890057A88C /* CLLocationCoordinate2D+Distance.swift in Sources */,
 				BC338CE51E8E5EC90057A88C /* DateExtensions.swift in Sources */,
 				BC338CCD1E8E10200057A88C /* Model.xcdatamodeld in Sources */,
+				BCE47D7F1EA46B0C009DE796 /* LocationTracker.swift in Sources */,
 				BC338CE31E8E5CCA0057A88C /* LocationCell.swift in Sources */,
 				BC338CE11E8E47790057A88C /* LocationViewController.swift in Sources */,
+				BCE47D831EA46D22009DE796 /* BackgroundTaskManager.swift in Sources */,
+				BCE47D8D1EA46E82009DE796 /* LocationTracker.m in Sources */,
+				BCE47D8B1EA46E82009DE796 /* BackgroundTaskManager.m in Sources */,
 				BCC975791E9B30E7005A14B3 /* AppSettings.swift in Sources */,
 				BCC975771E9B29B5005A14B3 /* SettingsViewController.swift in Sources */,
+				BCE47D811EA46B70009DE796 /* LocationShareModel.swift in Sources */,
 				BC338CF51E8E67890057A88C /* Result.swift in Sources */,
 				BC26D8601E92237000BD48BE /* DatePickerView.swift in Sources */,
 				BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */,
+				BCE47D8C1EA46E82009DE796 /* LocationShareModel.m in Sources */,
 				BC26D85E1E9222DE00BD48BE /* Popup.swift in Sources */,
 				BC338CDB1E8E3BBE0057A88C /* LocationService.swift in Sources */,
 				BC338CCF1E8E10760057A88C /* EntityMapper.swift in Sources */,
@@ -572,6 +612,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = truong.tuan.MGLocationKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MGLocationKitDemo/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -587,6 +628,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = truong.tuan.MGLocationKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MGLocationKitDemo/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
