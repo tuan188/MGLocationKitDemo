@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    var locationManager = TrackingLocationManager()
 //    var backgroundLocationManager = BackgroundLocationManager()
     
-    var locationTracker = LocationTracker()
+//    var locationTracker = LocationTracker()
     
     let locationService = LocationService()
     
@@ -48,49 +48,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: logFileURL(), fileLevel: .debug)
         log.logAppDetails()
         
-//        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
-//            event.add(content: "UIApplicationLaunchOptionsLocationKey: startMonitoringLocationInBackground")
-//            
+        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+            event.add(content: "UIApplicationLaunchOptionsLocationKey: startMonitoringLocationInBackground")
+            
 //            startMonitoringLocationInBackground()
-//        }
-//        else {
+        }
+        else {
 //            startTracking()
-//        }
+        }
         
-//        self.locationTracker = [[LocationTracker alloc]init];
-//        [self.locationTracker startLocationTracking];
+//        locationTracker.startLocationTracking()
 //        
-//        //Send the best location to server every 60 seconds
-//        //You may adjust the time interval depends on the need of your app.
-//        NSTimeInterval time = 60.0;
-//        self.locationUpdateTimer =
-//        [NSTimer scheduledTimerWithTimeInterval:time
-//        target:self
-//        selector:@selector(updateLocation)
-//        userInfo:nil
-//        repeats:YES];
-
-        locationTracker.startLocationTracking()
-        
-        let time = 30.0
-        self.locationUpdateTimer = Timer.scheduledTimer(withTimeInterval: time, repeats: true, block: { [unowned self](timer) in
-            self.locationTracker.updateLocationToServer()
-            let coordinate = self.locationTracker.myLocation
-            let accuracy = self.locationTracker.myLocationAccuracy
-            
-            let location = CLLocation(coordinate: coordinate, altitude: 0, horizontalAccuracy: accuracy, verticalAccuracy: 0, timestamp: Date())
-            
-            self.locationService.add(location).catch { _ in }
-            event.add(content: location.description)
-            log.debug(location.description)
-        })
+//        let time = 30.0
+//        self.locationUpdateTimer = Timer.scheduledTimer(withTimeInterval: time, repeats: true, block: { [unowned self](timer) in
+//            self.locationTracker.updateLocationToServer()
+//            let coordinate = self.locationTracker.myLocation
+//            let accuracy = self.locationTracker.myLocationAccuracy
+//            
+//            let location = CLLocation(coordinate: coordinate, altitude: 0, horizontalAccuracy: accuracy, verticalAccuracy: 0, timestamp: Date())
+//            
+//            self.locationService.add(location).catch { _ in }
+//            event.add(content: location.description)
+//            log.debug(location.description)
+//        })
         
         
         return true
     }
     
     /*
-    
+ 
     func startMonitoringLocationInBackground() {
         backgroundLocationManager.startBackground() { result in
             if case let .Success(location) = result {
@@ -161,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.scheduleLocalNotification(localNotification)
         
     }
+ 
+ */
     
     private func updateBackgroundLocation(location: CLLocation) {
         self.locationService.add(location).catch { _ in }
@@ -176,8 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
  
- */
-    
     func logFileURL() -> URL {
         let cacheDirectoryUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
         return cacheDirectoryUrl.appendingPathComponent("log.txt")

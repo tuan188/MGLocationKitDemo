@@ -43,6 +43,7 @@
 		BCAAD1A81E97934300235DCB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A71E97934300235DCB /* Constant.swift */; };
 		BCC975771E9B29B5005A14B3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */; };
 		BCC975791E9B30E7005A14B3 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC975781E9B30E7005A14B3 /* AppSettings.swift */; };
+		BCD1900C1EA71F7A006B602C /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD1900B1EA71F7A006B602C /* Tracker.swift */; };
 		BCE47D7F1EA46B0C009DE796 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */; };
 		BCE47D811EA46B70009DE796 /* LocationShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D801EA46B70009DE796 /* LocationShareModel.swift */; };
 		BCE47D831EA46D22009DE796 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */; };
@@ -92,6 +93,7 @@
 		BCAAD1A71E97934300235DCB /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BCC975761E9B29B5005A14B3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BCC975781E9B30E7005A14B3 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		BCD1900B1EA71F7A006B602C /* Tracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		BCE47D801EA46B70009DE796 /* LocationShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationShareModel.swift; sourceTree = "<group>"; };
 		BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				BCE47D7E1EA46B0C009DE796 /* LocationTracker.swift */,
 				BCE47D801EA46B70009DE796 /* LocationShareModel.swift */,
 				BCE47D821EA46D22009DE796 /* BackgroundTaskManager.swift */,
+				BCD1900B1EA71F7A006B602C /* Tracker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			files = (
 				BC338CD31E8E10D40057A88C /* LocationRepository.swift in Sources */,
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
+				BCD1900C1EA71F7A006B602C /* Tracker.swift in Sources */,
 				BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */,
 				BC338CF21E8E67890057A88C /* BackgroundTrackable.swift in Sources */,
 				BC26D85B1E92075D00BD48BE /* EventCell.swift in Sources */,

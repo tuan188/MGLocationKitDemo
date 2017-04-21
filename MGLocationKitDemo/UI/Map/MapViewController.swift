@@ -126,11 +126,6 @@ class MapViewController: UIViewController {
         drawProcessedRoute()
     }
     
-    @IBAction func drawProcessedRoute2(_ sender: Any) {
-        clearMap()
-        loadProccessedRoute2(zoomMap: false)
-    }
-    
     
     fileprivate func drawProcessedRoute(zoomMap: Bool = false) {
         clearMap()
@@ -139,32 +134,6 @@ class MapViewController: UIViewController {
     
     private func loadRoute(zoomMap: Bool) {
         locationService.all(currentDate).then { [unowned self] locations -> Void in
-            let newRoute = self.polyline(locations: locations, title: "route")
-            
-            let annotations = self.annotations(locations: locations)
-            
-            DispatchQueue.main.async {
-                self.currentRoute = newRoute
-                self.mapView.add(self.currentRoute!)
-                
-                if annotations.count > 0 {
-                    self.mapView.addAnnotations(annotations)
-                }
-                if zoomMap {
-                    self.zoomMapWithLocation(locations)
-                }
-            }
-            
-            }.catch { (error) in
-                log.debug(error)
-        }
-    }
-    
-    private func loadProccessedRoute2(zoomMap: Bool) {
-        locationService.all(currentDate).then { [unowned self] locs -> Void in
-            var locations = self.locationService.preprocessing(locs)
-            locations = self.locationService.filter(locations)
-            
             let newRoute = self.polyline(locations: locations, title: "route")
             
             let annotations = self.annotations(locations: locations)

@@ -249,14 +249,9 @@
                                     <segue destination="hmf-ij-ZhJ" kind="presentation" identifier="presentSettings" id="jIC-df-bH2"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Process1" id="r2U-wc-xGu">
+                            <barButtonItem title="Process" id="r2U-wc-xGu">
                                 <connections>
                                     <action selector="drawProcessedRoute:" destination="vtW-hZ-Rj1" id="ajg-TY-l8i"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Proccess2" id="YY5-lR-jc1">
-                                <connections>
-                                    <action selector="drawProcessedRoute2:" destination="vtW-hZ-Rj1" id="mHp-eL-hsN"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
