@@ -38,6 +38,7 @@
 		BC338CF41E8E67890057A88C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEC1E8E67890057A88C /* Constants.swift */; };
 		BC338CF51E8E67890057A88C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CED1E8E67890057A88C /* Result.swift */; };
 		BC338CF61E8E67890057A88C /* TrackingLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */; };
+		BC40812D1EA9E29E00562E2C /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC40812C1EA9E29E00562E2C /* CLLocationCoordinate2DExtension.swift */; };
 		BCAAD1A01E97410800235DCB /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD19F1E97410800235DCB /* KMeans.swift */; };
 		BCAAD1A41E97417000235DCB /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A31E97417000235DCB /* Vector.swift */; };
 		BCAAD1A81E97934300235DCB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAD1A71E97934300235DCB /* Constant.swift */; };
@@ -88,6 +89,7 @@
 		BC338CEC1E8E67890057A88C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC338CED1E8E67890057A88C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BC338CEE1E8E67890057A88C /* TrackingLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingLocationManager.swift; sourceTree = "<group>"; };
+		BC40812C1EA9E29E00562E2C /* CLLocationCoordinate2DExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtension.swift; sourceTree = "<group>"; };
 		BCAAD19F1E97410800235DCB /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		BCAAD1A31E97417000235DCB /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		BCAAD1A71E97934300235DCB /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				BC338CE41E8E5EC90057A88C /* DateExtensions.swift */,
+				BC40812C1EA9E29E00562E2C /* CLLocationCoordinate2DExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				BC338CB31E8E0F140057A88C /* AppDelegate.swift in Sources */,
 				BCD1900C1EA71F7A006B602C /* Tracker.swift in Sources */,
 				BC338CD51E8E39170057A88C /* MainTabBarViewController.swift in Sources */,
+				BC40812D1EA9E29E00562E2C /* CLLocationCoordinate2DExtension.swift in Sources */,
 				BC338CF21E8E67890057A88C /* BackgroundTrackable.swift in Sources */,
 				BC26D85B1E92075D00BD48BE /* EventCell.swift in Sources */,
 				BC26D8551E92027E00BD48BE /* EventRepository.swift in Sources */,

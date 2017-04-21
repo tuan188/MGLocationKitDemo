@@ -42,6 +42,14 @@ class LocationService {
         return locationRepository.deleteAll()
     }
     
+    func last() -> Promise<Location?> {
+        return locationRepository.last()
+    }
+    
+    func update(_ location: Location) -> Promise<Bool> {
+        return locationRepository.update(location)
+    }
+    
     func preprocessing(_ locations: [Location]) -> [Location] {
         guard locations.count > 0 else {
             return []

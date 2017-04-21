@@ -17,18 +17,20 @@ let event = EventService.sharedInstance
 var currentDate = Date()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, TrackerDelegate {
 
     var window: UIWindow?
     
-//    var locationManager = TrackingLocationManager()
+//    var locationMvarger = TrackingLocationManager()
 //    var backgroundLocationManager = BackgroundLocationManager()
     
 //    var locationTracker = LocationTracker()
     
+    let tracker = Tracker()
+    
     let locationService = LocationService()
     
-    var locationUpdateTimer: Timer?
+//    var locationUpdateTimer: Timer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -72,8 +74,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            log.debug(location.description)
 //        })
         
+        tracker.delegate = self
+        tracker.start()
+        
         
         return true
+    }
+    
+    func trackerDidEnterRegion(center: CLLocation) {
+        _ = locationService.add(center)
+    }
+    
+    func trackerDidExitRegion(center: CLLocationCoordinate2D) {
+        locationService.last().then { location -> Void in
+            if var location = location {
+                if center.distance(from: location.location) < 1 {
+                    let departureTime = Date()
+                    if departureTime.timeIntervalSince(location.createdTime) > 180 {
+                        location.arrivalTime = location.createdTime
+                        location.departureTime = Date()
+                        location.type = .departure
+                        _ = self.locationService.update(location)
+                    }
+                }
+            }
+        }.catch { (_) in
+            
+        }
     }
     
     /*

@@ -27,6 +27,7 @@ class LocationRepository {
             }
         }
     }
+    
     func all(_ date: Date? = nil) -> Promise<[Location]> {
         return Promise { fulfill, reject in
             let context = NSManagedObjectContext.mr_()
@@ -52,6 +53,36 @@ class LocationRepository {
         return Promise { fulfill, reject in
             MagicalRecord.save({ (context) in
                 LocationEntity.mr_truncateAll(in: context)
+            }) { (changed, error) in
+                if let error = error {
+                    reject(error)
+                }
+                else {
+                    fulfill(changed)
+                }
+            }
+        }
+    }
+    
+    func last() -> Promise<Location?> {
+        return Promise { fulfill, reject in
+            let context = NSManagedObjectContext.mr_()
+            if let entity = LocationEntity.mr_findFirstOrdered(byAttribute: "createdTime", ascending: false, in: context) {
+                fulfill(EntityMapper.location(from: entity))
+            }
+            else {
+                fulfill(nil)
+            }
+        }
+    }
+    
+    func update(_ location: Location) -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            MagicalRecord.save({ (context) in
+                let predicate = NSPredicate(format: "id = '\(location.id)'")
+                if let entity = LocationEntity.mr_findFirst(with: predicate, in: context) {
+                    EntityMapper.map(from: location, to: entity)
+                }
             }) { (changed, error) in
                 if let error = error {
                     reject(error)

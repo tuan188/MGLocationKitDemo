@@ -24,10 +24,10 @@ struct Location {
     let lat: Double
     let lng: Double
     let createdTime: Date
-    let arrivalTime: Date?
+    var arrivalTime: Date?
     var departureTime: Date?
     let transport: String?
-    let type: LocationType
+    var type: LocationType
     let accuracy: Double
     let speed: Double
     
