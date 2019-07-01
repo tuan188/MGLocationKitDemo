@@ -1,6 +1,6 @@
 //
 //  Popup.swift
-//  DMMUserApp
+//  MGLocationKitDemo
 //
 //  Created by Tuan Truong on 6/6/16.
 //  Copyright © 2016 Framgia. All rights reserved.
